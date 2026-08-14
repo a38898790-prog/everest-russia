@@ -1,65 +1,200 @@
-<!DOCTYPE html>
+here <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>EVEREST RUSSIA</title>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#080b10;color:#eee;font-family:Arial,sans-serif}
-header{background:#10151d;border-bottom:1px solid #29313c;padding:14px}
-.wrap{max-width:1000px;margin:auto}
-.logo{font-size:22px;font-weight:bold;color:#d9ad55}
-nav{margin-top:12px;display:flex;gap:7px;overflow:auto}
-button{border:1px solid #303b48;background:#151c25;color:#eee;padding:10px 13px;border-radius:7px;cursor:pointer}
-button:hover{background:#202a36}
-.gold{background:#c99d45;color:#111;border-color:#c99d45;font-weight:bold}
-.red{background:#451820;border-color:#71303b;color:#ff9ba7}
-main{padding:20px 0}
+body{
+margin:0;
+background:#080b10;
+color:#e9edf2;
+font-family:Arial,sans-serif
+}
+header{
+background:#10151c;
+border-bottom:1px solid #29323d;
+position:sticky;
+top:0;
+z-index:10
+}
+.wrap{
+max-width:1050px;
+margin:auto;
+padding:0 14px
+}
+.top{
+min-height:65px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px
+}
+.logo{
+font-size:21px;
+font-weight:bold;
+color:#d9aa52
+}
+nav{
+display:flex;
+gap:6px;
+overflow:auto
+}
+button{
+border:1px solid #303b47;
+background:#151c24;
+color:#e9edf2;
+padding:10px 13px;
+border-radius:7px;
+cursor:pointer
+}
+button:hover{background:#202a35}
+.gold{
+background:#cda04c;
+border-color:#cda04c;
+color:#111;
+font-weight:bold
+}
+.danger{
+background:#461b22;
+border-color:#743039;
+color:#ffadb6
+}
+main{padding:25px 0}
 .page{display:none}
 .page.active{display:block}
-.hero,.card{background:#111820;border:1px solid #293440;border-radius:10px;margin-bottom:15px}
-.hero{padding:25px}
-.hero h1{font-size:36px;margin:8px 0}
-.muted{color:#8995a3}
-.section{display:flex;align-items:center;gap:14px;padding:17px;border-bottom:1px solid #252e38;cursor:pointer}
-.section:last-child{border:0}
-.section:hover{background:#171f29}
+.hero{
+padding:35px 25px;
+background:linear-gradient(135deg,#121a23,#0d1117);
+border:1px solid #293542;
+border-radius:12px;
+margin-bottom:18px
+}
+.hero h1{
+font-size:38px;
+margin:8px 0
+}
+.muted{color:#8d99a6}
+.card{
+background:#111820;
+border:1px solid #293542;
+border-radius:10px;
+margin-bottom:16px;
+overflow:hidden
+}
+.head{
+padding:16px;
+font-weight:bold;
+border-bottom:1px solid #293542
+}
+.row{
+display:flex;
+align-items:center;
+gap:14px;
+padding:17px;
+border-bottom:1px solid #252e38;
+cursor:pointer
+}
+.row:last-child{border:0}
+.row:hover{background:#171f28}
 .icon{font-size:25px}
-.info{flex:1}
-.title{font-weight:bold;margin-bottom:5px}
-.small{font-size:12px;color:#8995a3}
-.card-head{padding:15px;font-weight:bold;border-bottom:1px solid #293440}
-.topic{padding:15px;border-bottom:1px solid #252e38;cursor:pointer}
-.topic:hover{background:#171f29}
-.badge{display:inline-block;padding:4px 7px;border-radius:5px;font-size:10px;background:#293440;margin-right:5px}
-.green{background:#123b26;color:#79e1a2}
-.gray{background:#30353b;color:#bbb}
+.grow{flex:1}
+.title{font-weight:bold}
+.small{
+font-size:12px;
+color:#8b97a4;
+margin-top:4px
+}
 .form{padding:18px}
-input,textarea,select{width:100%;padding:11px;margin:6px 0 14px;background:#090d12;border:1px solid #303b48;border-radius:7px;color:white}
-textarea{min-height:120px}
-.actions{display:flex;gap:7px;flex-wrap:wrap}
-.empty{text-align:center;padding:30px;color:#7d8996}
-.post{padding:17px;border-bottom:1px solid #293440}
-.locked{margin:15px;padding:12px;background:#292e34;border-radius:7px;color:#bbb}
-@media(max-width:600px){
-.hero h1{font-size:29px}
-.wrap{width:calc(100% - 20px)}
+input,textarea,select{
+width:100%;
+background:#090d12;
+border:1px solid #303b47;
+color:white;
+border-radius:7px;
+padding:11px;
+margin:6px 0 14px
+}
+textarea{min-height:110px;resize:vertical}
+.actions{
+display:flex;
+gap:7px;
+flex-wrap:wrap
+}
+.topic{
+padding:16px;
+border-bottom:1px solid #29323b;
+cursor:pointer
+}
+.topic:hover{background:#171f28}
+.badge{
+display:inline-block;
+padding:4px 7px;
+border-radius:5px;
+font-size:11px;
+background:#303944;
+margin-right:5px
+}
+.green{
+background:#123a25;
+color:#7de1a1
+}
+.gray{color:#b8bec5}
+.post{
+padding:17px;
+border-bottom:1px solid #29323b
+}
+.lock{
+padding:14px;
+margin:15px;
+background:#292e34;
+border-radius:7px;
+color:#b8bec5
+}
+.empty{
+padding:35px;
+text-align:center;
+color:#7e8995
+}
+.profile{
+display:flex;
+align-items:center;
+gap:12px
+}
+.avatar{
+width:48px;
+height:48px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#252f3a;
+font-size:22px
+}
+@media(max-width:650px){
+.top{align-items:flex-start;padding:12px 0;flex-direction:column}
+nav{width:100%}
+.hero h1{font-size:30px}
 }
 </style>
 </head>
+
 <body>
 
 <header>
-<div class="wrap">
+<div class="wrap top">
+
 <div class="logo">EVEREST RUSSIA</div>
 
-<nav>
-<button onclick="page('home')">Главная</button>
-<button onclick="page('alpine')">🏔️ ALPINE</button>
-<button onclick="page('topics')">Темы</button>
-<button onclick="page('applications')">Заявки</button>
+<nav id="nav">
+<button onclick="go('home')">Главная</button>
+<button onclick="go('alpine')">🏔️ ALPINE</button>
+<button onclick="go('topics')">Темы</button>
+<button onclick="go('applications')">Заявки</button>
 </nav>
+
 </div>
 </header>
 
@@ -68,44 +203,53 @@ textarea{min-height:120px}
 <section id="home" class="page active">
 
 <div class="hero">
+
 <div class="small">ОФИЦИАЛЬНЫЙ ФОРУМ</div>
+
 <h1>EVEREST RUSSIA</h1>
+
 <p class="muted">
-Форум проекта. Основной сервер — ALPINE.
-Здесь находятся темы, жалобы и заявки.
+Форум проекта с сервером ALPINE.
+Новости, обсуждения, жалобы и заявки.
 </p>
 
 <div class="actions">
-<button class="gold" onclick="page('alpine')">
+
+<button class="gold" onclick="go('alpine')">
 🏔️ Открыть ALPINE
 </button>
-<button onclick="login()">Войти</button>
-<button onclick="register()">Регистрация</button>
+
+<button onclick="login()">
+🔑 Войти
+</button>
+
 </div>
+
 </div>
 
 <div class="card">
-<div class="card-head">Разделы</div>
 
-<div class="section" onclick="page('alpine')">
+<div class="head">Разделы форума</div>
+
+<div class="row" onclick="go('alpine')">
 <div class="icon">🏔️</div>
-<div class="info">
+<div class="grow">
 <div class="title">ALPINE</div>
-<div class="small">Основной сервер проекта</div>
+<div class="small">Основной сервер</div>
 </div>
 </div>
 
-<div class="section" onclick="page('topics')">
+<div class="row" onclick="go('topics')">
 <div class="icon">💬</div>
-<div class="info">
+<div class="grow">
 <div class="title">Общие темы</div>
 <div class="small">Обсуждения пользователей</div>
 </div>
 </div>
 
-<div class="section" onclick="page('applications')">
+<div class="row" onclick="go('applications')">
 <div class="icon">📋</div>
-<div class="info">
+<div class="grow">
 <div class="title">Заявки</div>
 <div class="small">Лидер и администрация</div>
 </div>
@@ -115,1681 +259,446 @@ textarea{min-height:120px}
 
 </section>
 
+
 <section id="alpine" class="page">
 
 <div class="card">
-<div class="card-head">🏔️ ALPINE</div>
 
-<div class="section" onclick="section('Государственные фракции')">
+<div class="head">🏔️ ALPINE</div>
+
+<div class="row" onclick="section('Государственные фракции')">
 <div class="icon">🏛️</div>
-<div class="info">
+<div class="grow">
 <div class="title">Государственные фракции</div>
-<div class="small">Раздел государственных организаций</div>
+<div class="small">Организации и обсуждения</div>
 </div>
 </div>
 
-<div class="section" onclick="section('Криминальные фракции')">
+<div class="row" onclick="section('Криминальные фракции')">
 <div class="icon">🔪</div>
-<div class="info">
+<div class="grow">
 <div class="title">Криминальные фракции</div>
-<div class="small">Раздел криминальных организаций</div>
+<div class="small">Организации и обсуждения</div>
 </div>
 </div>
 
-<div class="section" onclick="complaint('admin')">
+<div class="row" onclick="complaint('admin')">
 <div class="icon">⚖️</div>
-<div class="info">
+<div class="grow">
 <div class="title">Жалобы на администрацию</div>
-<div class="small">Подать жалобу на администратора</div>
+<div class="small">Подать жалобу</div>
 </div>
 </div>
 
-<div class="section" onclick="complaint('player')">
+<div class="row" onclick="complaint('player')">
 <div class="icon">🚨</div>
-<div class="info">
+<div class="grow">
 <div class="title">Жалобы на игроков</div>
-<div class="small">Подать жалобу на игрока</div>
+<div class="small">Подать жалобу</div>
+</div>
+</div>
+
+<div class="row" onclick="serverInfo()">
+<div class="icon">ℹ️</div>
+<div class="grow">
+<div class="title">Информация о сервере</div>
+<div class="small">Основная информация ALPINE</div>
 </div>
 </div>
 
 </div>
 
-<button onclick="page('home')">← Назад</button>
+<button onclick="go('home')">← Назад</button>
 
 </section>
+
 
 <section id="topics" class="page">
 
 <div class="card">
-<div class="card-head">Все темы</div>
-<div id="topicsList"></div>
+
+<div class="head">💬 Темы</div>
+
+<div id="topicList"></div>
+
 </div>
 
-<button class="gold" onclick="newTopic()">＋ Создать тему</button>
-<button onclick="page('home')">← Назад</button>
+<button class="gold" onclick="newTopic()">
+＋ Создать тему
+</button>
+
+<button onclick="go('home')">
+← Назад
+</button>
 
 </section>
+
 
 <section id="applications" class="page">
 
 <div class="card">
-<div class="card-head">Заявки</div>
 
-<div class="section" onclick="application('leader')">
+<div class="head">📋 Заявки</div>
+
+<div class="row" onclick="application('leader')">
 <div class="icon">👑</div>
-<div class="info">
+<div class="grow">
 <div class="title">Заявка на лидера</div>
-<div class="small">Отдельная форма для лидеров</div>
+<div class="small">Отдельная форма</div>
 </div>
 </div>
 
-<div class="section" onclick="application('admin')">
+<div class="row" onclick="application('admin')">
 <div class="icon">🛡️</div>
-<div class="info">
+<div class="grow">
 <div class="title">Заявка на администратора</div>
-<div class="small">Отдельная форма для администрации</div>
+<div class="small">Отдельная форма</div>
 </div>
 </div>
 
 </div>
 
-<button onclick="page('home')">← Назад</button>
+<button onclick="go('home')">
+← Назад
+</button>
 
 </section>
+
 
 <section id="view" class="page">
 
 <div class="card">
+
 <div id="viewHead"></div>
-<div id="posts"></div>
-<div id="reply"></div>
+<div id="viewBody"></div>
+<div id="viewActions"></div>
+
 </div>
 
-<button onclick="page('topics')">← Назад</button>
+<button onclick="go('topics')">
+← К темам
+</button>
 
 </section>
+
 
 <section id="section" class="page">
 
 <div class="card">
-<div class="card-head" id="sectionName"></div>
-<div id="sectionTopics"></div>
+
+<div class="head" id="sectionTitle"></div>
+
+<div id="sectionList"></div>
+
 </div>
 
-<button onclick="page('alpine')">← Назад</button>
+<button onclick="go('alpine')">
+← ALPINE
+</button>
+
+</section>
+
+
+<section id="admin" class="page">
+
+<div class="card">
+
+<div class="head">
+🛡️ Панель администрации
+</div>
+
+<div id="adminContent"></div>
+
+</div>
+
+</section>
+
+
+<section id="profile" class="page">
+
+<div class="card">
+
+<div class="head">
+👤 Профиль
+</div>
+
+<div id="profileContent"></div>
+
+</div>
 
 </section>
 
 </main>
 
+
 <script>
-let user=null;
-let topics=[];
+
+let user=localStorage.getItem("user")||"";
+let role=localStorage.getItem("role")||"";
+
+let topics=JSON.parse(
+localStorage.getItem("topics")||"[]"
+);
+
+let applications=JSON.parse(
+localStorage.getItem("applications")||"[]"
+);
+
+let complaints=JSON.parse(
+localStorage.getItem("complaints")||"[]"
+);
+
 let current=null;
 
-function page(id){
-document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
-document.getElementById(id).classList.add('active');
-if(id==='topics')renderTopics();
-}
-
-function save(){
-localStorage.setItem('everest_topics',JSON.stringify(topics));
-}
-
-function load(){
-topics=JSON.parse(localStorage.getItem('everest_topics')||'[]');
 
 if(!topics.length){
+
 topics=[{
 id:1,
-title:'Добро пожаловать на EVEREST RUSSIA',
-category:'Общие',
-author:'Создатель',
-text:'Добро пожаловать на форум EVEREST RUSSIA!',
+title:"Добро пожаловать на форум",
+category:"Общие",
+author:"Создатель",
+text:"Добро пожаловать на EVEREST RUSSIA!",
 closed:false,
 posts:[]
 }];
+
 save();
 }
+
+
+function save(){
+
+localStorage.setItem(
+"topics",
+JSON.stringify(topics)
+);
+
+localStorage.setItem(
+"applications",
+JSON.stringify(applications)
+);
+
+localStorage.setItem(
+"complaints",
+JSON.stringify(complaints)
+);
+
 }
+
+
+function esc(x){
+
+return String(x).replace(
+/[&<>"']/g,
+m=>({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+}[m])
+);
+
+}
+
+
+function go(id){
+
+document.querySelectorAll(
+".page"
+).forEach(x=>x.classList.remove("active"));
+
+document.getElementById(id)
+.classList.add("active");
+
+if(id==="topics")renderTopics();
+
+if(id==="profile")renderProfile();
+
+if(id==="admin")renderAdmin();
+
+}
+
+
+function login(){
+
+let nick=prompt("Введите ник:");
+
+if(!nick)return;
+
+nick=nick.trim();
+
+if(!nick)return;
+
+/*
+Демо-роли.
+
+Для настоящей защиты нужен сервер.
+*/
+
+if(nick.toLowerCase()==="создатель"){
+role="Создатель";
+}
+
+else if(
+nick.toLowerCase()==="создатель 2"
+){
+role="Создатель 2";
+}
+
+else if(
+localStorage.getItem("role_"+nick)
+){
+role=localStorage.getItem("role_"+nick);
+}
+
+else{
+role="Игрок";
+}
+
+user=nick;
+
+localStorage.setItem(
+"user",user
+);
+
+localStorage.setItem(
+"role",role
+);
+
+alert(
+"Вы вошли как: "+role
+);
+
+location.reload();
+
+}
+
+
+function isAdmin(){
+
+return [
+"Создатель",
+"Создатель 2",
+"Администратор",
+"Модератор"
+].includes(role);
+
+}
+
+
+function isFounder(){
+
+return [
+"Создатель",
+"Создатель 2"
+].includes(role);
+
+}
+
 
 function renderTopics(){
-let box=document.getElementById('topicsList');
+
+let box=document.getElementById(
+"topicList"
+);
 
 if(!topics.length){
-box.innerHTML='<div class="empty">Тем нет</div>';
+
+box.innerHTML=
+'<div class="empty">Тем нет</div>';
+
 return;
+
 }
 
-box.innerHTML=topics.slice().reverse().map(t=>`
-<div class="topic" onclick="openTopic(${t.id})">
-${t.closed?'<span class="badge gray">🔒 Закрыто</span>':''}
-<div><b>${esc(t.title)}</b></div>
+box.innerHTML=topics
+.slice()
+.reverse()
+.map(t=>`
+
+<div class="topic"
+onclick="openTopic(${t.id})">
+
+${t.closed?
+'<span class="badge gray">🔒 Закрыта</span>':
+''}
+
+<b>${esc(t.title)}</b>
+
 <div class="small">
-${esc(t.category)} · ${esc(t.author)}
+${esc(t.category)} ·
+${esc(t.author)}
 </div>
+
 </div>
-`).join('');
+
+`).join("");
+
 }
+
 
 function openTopic(id){
-current=topics.find(t=>t.id===id);
+
+current=topics.find(
+t=>t.id===id
+);
+
 if(!current)return;
 
-page('view');
+go("view");
 
-document.getElementById('viewHead').innerHTML=`
+document.getElementById(
+"viewHead"
+).innerHTML=`
+
 <div class="post">
+
 <h2>${esc(current.title)}</h2>
+
 <div class="small">
-${esc(current.category)} · ${esc(current.author)}
+${esc(current.category)}
+· ${esc(current.author)}
 </div>
+
 </div>
+
 `;
 
 let html=`
+
 <div class="post">
 ${esc(current.text)}
 </div>
+
 `;
 
-html+=current.posts.map(p=>`
+current.posts.forEach(p=>{
+
+html+=`
+
 <div class="post">
+
 <b>${esc(p.author)}</b>
-<div class="small">${esc(p.date)}</div>
+
+<div class="small">
+${esc(p.date)}
+</div>
+
 <br>
+
 ${esc(p.text)}
-</div>
-`).join('');
 
-document.getElementById('posts').innerHTML=html;
+</div>
 
-document.getElementById('reply').innerHTML=current.closed?`
-<div class="locked">
-🔒 Тема закрыта.
-<br>
-Обычные пользователи писать не могут.
-</div>
-`:
-`
-<div class="form">
-<textarea id="replyText" placeholder="Ваш ответ"></textarea>
-<button class="gold" onclick="reply()">Ответить</button>
-</div>
 `;
-}
 
-function reply(){
-let text=document.getElementById('replyText').value.trim();
-if(!text)return alert('Напишите сообщение');
-
-current.posts.push({
-author:user||'Гость',
-date:new Date().toLocaleString('ru-RU'),
-text:text
 });
 
-save();
-openTopic(current.id);
-}
+document.getElementById(
+"viewBody"
+).innerHTML=html;
 
-function newTopic(){
-let title=prompt('Название темы:');
-if(!title)return;
 
-let text=prompt('Текст темы:');
-if(!text)return;
-
-topics.push({
-id:Date.now(),
-title:title,
-category:'Общие',
-author:user||'Гость',
-text:text,
-closed:false,
-posts:[]
-});
-
-save();
-renderTopics();
-}
-
-function section(name){
-page('section');
-document.getElementById('sectionName').textContent=name;
-
-let arr=topics.filter(t=>t.category===name);
-
-document.getElementById('sectionTopics').innerHTML=
-arr.length
-?arr.map(t=>`
-<div class="topic" onclick="openTopic(${t.id})">
-${t.closed?'<span class="badge gray">🔒</span>':''}
-<b>${esc(t.title)}</b>
-<div class="small">${esc(t.author)}</div>
-</div>`).join('')
-:'<div class="empty">В этом разделе пока нет тем</div>';
-}
-
-function esc(x){
-return String(x).replace(/[&<>"']/g,m=>({
-'&':'&amp;','<':'&lt;','>':'&gt;',
-'"':'&quot;',"'":'&#039;'
-}[m]));
-}
-
-load();
-renderTopics();
-</script>
-
-</body>
-  </html>
-
-// ===== АДМИН-СИСТЕМА =====
-
-let role = localStorage.getItem('everest_role') || 'guest';
-
-function isAdmin(){
-    return role==='Создатель' ||
-           role==='Создатель 2' ||
-           role==='Администратор' ||
-           role==='Модератор';
-}
-
-function isFounder(){
-    return role==='Создатель' ||
-           role==='Создатель 2';
-}
-
-function login(){
-    let nick=prompt('Введите ник:');
-    if(!nick)return;
-
-    user=nick;
-
-    // Для тестирования
-    if(nick.toLowerCase()==='создатель'){
-        role='Создатель';
-    }else if(nick.toLowerCase()==='создатель 2'){
-        role='Создатель 2';
-    }else{
-        role='Игрок';
-    }
-
-    localStorage.setItem('everest_user',user);
-    localStorage.setItem('everest_role',role);
-
-    alert('Вы вошли как '+role);
-    location.reload();
-}
-
-function register(){
-    let nick=prompt('Придумайте ник:');
-    if(!nick)return;
-
-    user=nick;
-    role='Игрок';
-
-    localStorage.setItem('everest_user',user);
-    localStorage.setItem('everest_role',role);
-
-    alert('Регистрация завершена');
-    location.reload();
-}
-
-// Панель управления темой
-function topicControls(){
-
-    if(!isAdmin())return '';
-
-    return `
-    <div class="form">
-
-        <div class="actions">
-
-            <button
-                onclick="toggleTopic()">
-                ${current.closed?'🔓 Открыть':'🔒 Закрыть'}
-            </button>
-
-            <button
-                class="red"
-                onclick="deleteTopic()">
-                🗑️ Удалить тему
-            </button>
-
-        </div>
-
-    </div>`;
-}
-
-// Закрыть / открыть
-function toggleTopic(){
-
-    if(!isAdmin()){
-        alert('Нет доступа');
-        return;
-    }
-
-    current.closed=!current.closed;
-
-    save();
-
-    openTopic(current.id);
-}
-
-// Удаление
-function deleteTopic(){
-
-    if(!isAdmin()){
-        alert('Нет доступа');
-        return;
-    }
-
-    if(!confirm(
-        'Точно удалить эту тему?'
-    ))return;
-
-    let id=current.id;
-
-    topics=topics.filter(
-        t=>t.id!==id
-    );
-
-    save();
-
-    current=null;
-
-    alert('Тема удалена');
-
-    page('topics');
-}
-
-// Ответ админа в закрытую тему
-function adminReply(){
-
-    let text=prompt(
-        'Ответ администрации:'
-    );
-
-    if(!text)return;
-
-    current.posts.push({
-        author:user || 'Администрация',
-        date:new Date().toLocaleString('ru-RU'),
-        text:'[Ответ администрации] '+text
-    });
-
-    save();
-
-    openTopic(current.id);
-}
-
-// Полностью заменяем открытие темы
-function openTopic(id){
-
-    current=topics.find(
-        t=>t.id===id
-    );
-
-    if(!current)return;
-
-    page('view');
-
-    document.getElementById(
-        'viewHead'
-    ).innerHTML=`
-
-        <div class="post">
-
-            <h2>
-                ${esc(current.title)}
-            </h2>
-
-            <div class="small">
-                ${esc(current.category)}
-                ·
-                ${esc(current.author)}
-            </div>
-
-        </div>
-
-        ${topicControls()}
-    `;
-
-    let html=`
-
-        <div class="post">
-            ${esc(current.text)}
-        </div>
-
-    `;
-
-    html+=current.posts.map(
-        p=>`
-
-        <div class="post">
-
-            <b>${esc(p.author)}</b>
-
-            <div class="small">
-                ${esc(p.date)}
-            </div>
-
-            <br>
-
-            ${esc(p.text)}
-
-        </div>
-
-        `
-    ).join('');
-
-    document.getElementById(
-        'posts'
-    ).innerHTML=html;
-
-    // Закрытая тема
-    if(current.closed){
-
-        if(isAdmin()){
-
-            document.getElementById(
-                'reply'
-            ).innerHTML=`
-
-            <div class="locked">
-                🔒 Тема закрыта для игроков.
-                <br><br>
-                Администрация всё ещё может
-                отвечать.
-            </div>
-
-            <div class="form">
-
-                <button
-                    class="gold"
-                    onclick="adminReply()">
-
-                    🛡️ Ответить от администрации
-
-                </button>
-
-            </div>
-
-            `;
-
-        }else{
-
-            document.getElementById(
-                'reply'
-            ).innerHTML=`
-
-            <div class="locked">
-
-                🔒 Тема закрыта.
-                <br>
-                Ответить может только администрация.
-
-            </div>
-
-            `;
-
-        }
-
-        return;
-    }
-
-    // Обычная открытая тема
-    document.getElementById(
-        'reply'
-    ).innerHTML=`
-
-    <div class="form">
-
-        <textarea
-            id="replyText"
-            placeholder="Ваш ответ">
-        </textarea>
-
-        <button
-            class="gold"
-            onclick="reply()">
-
-            Ответить
-
-        </button>
-
-    </div>
-
-    `;
-
-}
-
-<script>
-...старый код...
-
-// ===== АДМИН-СИСТЕМА =====
-...ЧАСТЬ 2...
-
-  </script>
-
-// ===== ЗАЯВКИ И ЖАЛОБЫ =====
-
-function application(type){
-
-    page('view');
-
-    let title = type==='leader'
-        ? '👑 Заявка на лидера'
-        : '🛡️ Заявка на администратора';
-
-    document.getElementById('viewHead').innerHTML=
-        '<div class="post"><h2>'+title+'</h2></div>';
-
-    document.getElementById('posts').innerHTML='';
-
-    document.getElementById('reply').innerHTML=`
-
-    <div class="form">
-
-        <label>Ваш ник</label>
-        <input id="appNick" placeholder="Введите ник">
-
-        <label>Возраст</label>
-        <input id="appAge" placeholder="Введите возраст">
-
-        <label>Стаж на проекте</label>
-        <input id="appTime" placeholder="Например: 6 месяцев">
-
-        <label>Мотивация</label>
-        <textarea id="appReason"
-        placeholder="Почему именно вы?"></textarea>
-
-        <button class="gold"
-        onclick="sendApplication('${type}')">
-        📩 Отправить заявку
-        </button>
-
-    </div>
-
-    `;
-}
-
-function sendApplication(type){
-
-    let nick=document.getElementById('appNick').value.trim();
-    let age=document.getElementById('appAge').value.trim();
-    let time=document.getElementById('appTime').value.trim();
-    let reason=document.getElementById('appReason').value.trim();
-
-    if(!nick||!age||!time||!reason){
-        alert('Заполните все поля');
-        return;
-    }
-
-    let apps=JSON.parse(
-        localStorage.getItem('everest_apps')||'[]'
-    );
-
-    apps.push({
-        id:Date.now(),
-        type:type,
-        nick:nick,
-        age:age,
-        time:time,
-        reason:reason,
-        status:'На рассмотрении'
-    });
-
-    localStorage.setItem(
-        'everest_apps',
-        JSON.stringify(apps)
-    );
-
-    alert('Заявка отправлена!');
-    page('applications');
-}
-
-
-// ===== ЖАЛОБЫ =====
-
-function complaint(type){
-
-    page('view');
-
-    let admin=type==='admin';
-
-    document.getElementById('viewHead').innerHTML=`
-        <div class="post">
-            <h2>
-            ${admin
-            ?'⚖️ Жалоба на администратора'
-            :'🚨 Жалоба на игрока'}
-            </h2>
-        </div>
-    `;
-
-    document.getElementById('posts').innerHTML='';
-
-    document.getElementById('reply').innerHTML=`
-
-    <div class="form">
-
-        <label>Ваш ник</label>
-
-        <input id="complainant"
-        placeholder="Ваш ник">
-
-        <label>
-        ${admin
-        ?'Ник администратора'
-        :'Ник игрока, на которого жалоба'}
-        </label>
-
-        <input id="target"
-        placeholder="Введите ник">
-
-        <label>Суть жалобы</label>
-
-        <textarea id="complaintText"
-        placeholder="Подробно опишите ситуацию"></textarea>
-
-        <label>Доказательства</label>
-
-        <textarea id="evidence"
-        placeholder="Ссылки, описание доказательств"></textarea>
-
-        <button class="gold"
-        onclick="sendComplaint('${type}')">
-        📩 Подать жалобу
-        </button>
-
-    </div>
-
-    `;
-}
-
-function sendComplaint(type){
-
-    let author=
-        document.getElementById('complainant')
-        .value.trim();
-
-    let target=
-        document.getElementById('target')
-        .value.trim();
-
-    let text=
-        document.getElementById('complaintText')
-        .value.trim();
-
-    let evidence=
-        document.getElementById('evidence')
-        .value.trim();
-
-    if(!author||!target||!text||!evidence){
-        alert('Заполните все поля');
-        return;
-    }
-
-    let complaints=JSON.parse(
-        localStorage.getItem('everest_complaints')||'[]'
-    );
-
-    complaints.push({
-
-        id:Date.now(),
-
-        type:type,
-
-        author:author,
-
-        target:target,
-
-        text:text,
-
-        evidence:evidence,
-
-        status:'На рассмотрении',
-
-        date:new Date().toLocaleString('ru-RU')
-
-    });
-
-    localStorage.setItem(
-        'everest_complaints',
-        JSON.stringify(complaints)
-    );
-
-    alert('Жалоба отправлена администрации');
-
-    page('alpine');
-}
-
-
-// ===== ПАНЕЛЬ АДМИНИСТРАЦИИ =====
-
-function adminPanel(){
-
-    if(!isAdmin()){
-        alert('Доступ только администрации');
-        return;
-    }
-
-    page('view');
-
-    document.getElementById('viewHead').innerHTML=`
-        <div class="post">
-            <h2>🛡️ Панель администрации</h2>
-            <div class="small">
-            Вы вошли как: ${esc(role)}
-            </div>
-        </div>
-    `;
-
-    document.getElementById('posts').innerHTML=`
-
-    <div class="section"
-    onclick="showApplications()">
-
-        <div class="icon">📋</div>
-
-        <div class="info">
-
-            <div class="title">
-            Заявки
-            </div>
-
-            <div class="small">
-            Рассмотрение заявок пользователей
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="section"
-    onclick="showComplaints()">
-
-        <div class="icon">⚖️</div>
-
-        <div class="info">
-
-            <div class="title">
-            Жалобы
-            </div>
-
-            <div class="small">
-            Рассмотрение жалоб
-            </div>
-
-        </div>
-
-    </div>
-
-    `;
-
-    document.getElementById('reply').innerHTML='';
-}
-
-
-function showApplications(){
-
-    let apps=JSON.parse(
-        localStorage.getItem('everest_apps')||'[]'
-    );
-
-    let html='<div class="card">';
-
-    if(!apps.length){
-        html+='<div class="empty">Заявок пока нет</div>';
-    }
-
-    apps.forEach(a=>{
-
-        html+=`
-
-        <div class="post">
-
-            <b>
-            ${a.type==='leader'
-            ?'👑 Лидер'
-            :'🛡️ Администратор'}
-            </b>
-
-            <p>Ник: ${esc(a.nick)}</p>
-
-            <p>Возраст: ${esc(a.age)}</p>
-
-            <p>Стаж: ${esc(a.time)}</p>
-
-            <p>${esc(a.reason)}</p>
-
-            <span class="badge">
-            ${esc(a.status)}
-            </span>
-
-            <br><br>
-
-            <button
-            onclick="setAppStatus(${a.id},'Принято')">
-            ✅ Принять
-            </button>
-
-            <button
-            class="red"
-            onclick="setAppStatus(${a.id},'Отклонено')">
-            🚫 Отклонить
-            </button>
-
-        </div>
-
-        `;
-
-    });
-
-    html+='</div>';
-
-    document.getElementById('posts').innerHTML=html;
-}
-
-
-function setAppStatus(id,status){
-
-    if(!isAdmin())return;
-
-    let apps=JSON.parse(
-        localStorage.getItem('everest_apps')||'[]'
-    );
-
-    let app=apps.find(a=>a.id===id);
-
-    if(app){
-        app.status=status;
-    }
-
-    localStorage.setItem(
-        'everest_apps',
-        JSON.stringify(apps)
-    );
-
-    showApplications();
-}
-
-
-function showComplaints(){
-
-    let list=JSON.parse(
-        localStorage.getItem('everest_complaints')||'[]'
-    );
-
-    let html='<div class="card">';
-
-    if(!list.length){
-        html+='<div class="empty">Жалоб пока нет</div>';
-    }
-
-    list.forEach(c=>{
-
-        html+=`
-
-        <div class="post">
-
-        <b>
-        ${c.type==='admin'
-        ?'⚖️ Жалоба на администратора'
-        :'🚨 Жалоба на игрока'}
-        </b>
-
-        <p>
-        Автор: ${esc(c.author)}
-        </p>
-
-        <p>
-        Цель: ${esc(c.target)}
-        </p>
-
-        <p>
-        ${esc(c.text)}
-        </p>
-
-        <p>
-        Доказательства:
-        <br>
-        ${esc(c.evidence)}
-        </p>
-
-        <span class="badge">
-        ${esc(c.status)}
-        </span>
-
-        <br><br>
-
-        <button
-        onclick="setComplaint(${c.id},'Одобрено')">
-        ✅ Одобрено
-        </button>
-
-        <button
-        class="red"
-        onclick="setComplaint(${c.id},'Отказано')">
-        🚫 Отказано
-        </button>
-
-        <button
-        onclick="setComplaint(${c.id},'Закрыто')">
-        🔒 Закрыто
-        </button>
-
-        </div>
-
-        `;
-
-    });
-
-    html+='</div>';
-
-    document.getElementById('posts').innerHTML=html;
-}
-
-
-function setComplaint(id,status){
-
-    if(!isAdmin())return;
-
-    let list=JSON.parse(
-        localStorage.getItem('everest_complaints')||'[]'
-    );
-
-    let item=list.find(c=>c.id===id);
-
-    if(item){
-        item.status=status;
-    }
-
-    localStorage.setItem(
-        'everest_complaints',
-        JSON.stringify(list)
-    );
-
-    showComplaints();
-}
-
-
-// Автоматически подхватываем пользователя
-user=localStorage.getItem('everest_user')||null;
-<script>
-...старый код...
-
-// ===== АДМИН-СИСТЕМА =====
-...ЧАСТЬ 2...
-
-  </script>
-
-
-// ===== ПАНЕЛЬ И ПРАВА =====
-
-function addAdminButton(){
-
-    let nav=document.querySelector('nav');
-
-    if(!nav)return;
-
-    if(isAdmin() &&
-       !document.getElementById('adminBtn')){
-
-        let b=document.createElement('button');
-
-        b.id='adminBtn';
-        b.textContent='🛡️ Админ-панель';
-        b.onclick=adminPanel;
-
-        nav.appendChild(b);
-    }
-}
-
-function founderPanel(){
-
-    if(!isFounder()){
-        alert('Только Создатель и Создатель 2');
-        return;
-    }
-
-    page('view');
-
-    document.getElementById('viewHead').innerHTML=`
-        <div class="post">
-            <h2>👑 Управление форумом</h2>
-            <div class="small">
-            ${esc(role)} — полный доступ
-            </div>
-        </div>
-    `;
-
-    document.getElementById('posts').innerHTML=`
-
-        <div class="section"
-        onclick="manageAdmins()">
-
-            <div class="icon">🛡️</div>
-
-            <div class="info">
-                <div class="title">
-                Управление администрацией
-                </div>
-
-                <div class="small">
-                Назначение и снятие должностей
-                </div>
-            </div>
-
-        </div>
-
-        <div class="section"
-        onclick="showApplications()">
-
-            <div class="icon">📋</div>
-
-            <div class="info">
-                <div class="title">
-                Все заявки
-                </div>
-
-                <div class="small">
-                Лидеры и администрация
-                </div>
-            </div>
-
-        </div>
-
-        <div class="section"
-        onclick="showComplaints()">
-
-            <div class="icon">⚖️</div>
-
-            <div class="info">
-                <div class="title">
-                Все жалобы
-                </div>
-
-                <div class="small">
-                Рассмотрение жалоб
-                </div>
-            </div>
-
-        </div>
-
-    `;
-
-    document.getElementById('reply').innerHTML='';
-}
-
-
-function manageAdmins(){
-
-    if(!isFounder()){
-        alert('Нет доступа');
-        return;
-    }
-
-    let nick=prompt(
-        'Введите ник пользователя:'
-    );
-
-    if(!nick)return;
-
-    let choice=prompt(
-        'Выберите должность:\\n\\n'+
-        '1 — Администратор\\n'+
-        '2 — Модератор\\n'+
-        '3 — Игрок'
-    );
-
-    let newRole='Игрок';
-
-    if(choice==='1')
-        newRole='Администратор';
-
-    if(choice==='2')
-        newRole='Модератор';
-
-    localStorage.setItem(
-        'role_'+nick,
-        newRole
-    );
-
-    alert(
-        'Пользователь '+nick+
-        ' теперь: '+newRole
-    );
-}
-
-
-// Получение роли пользователя
-function getStoredRole(nick){
-
-    if(
-        nick.toLowerCase()==='создатель'
-    )
-        return 'Создатель';
-
-    if(
-        nick.toLowerCase()==='создатель 2'
-    )
-        return 'Создатель 2';
-
-    return localStorage.getItem(
-        'role_'+nick
-    ) || 'Игрок';
-}
-
-
-// Обновляем вход
-function login(){
-
-    let nick=prompt('Введите ник:');
-
-    if(!nick)return;
-
-    user=nick;
-
-    role=getStoredRole(nick);
-
-    localStorage.setItem(
-        'everest_user',
-        user
-    );
-
-    localStorage.setItem(
-        'everest_role',
-        role
-    );
-
-    alert(
-        'Вы вошли как: '+role
-    );
-
-    location.reload();
-}
-
-
-// Кнопка управления Создателя
-function addFounderButton(){
-
-    let nav=document.querySelector('nav');
-
-    if(!nav)return;
-
-    if(
-        isFounder() &&
-        !document.getElementById('founderBtn')
-    ){
-
-        let b=document.createElement('button');
-
-        b.id='founderBtn';
-
-        b.textContent='👑 Управление';
-
-        b.onclick=founderPanel;
-
-        nav.appendChild(b);
-    }
-}
-
-
-// Запускаем кнопки после загрузки
-setTimeout(function(){
-
-    addAdminButton();
-    addFounderButton();
-
-},100);
-<script>
-...старый код...
-
-// ===== АДМИН-СИСТЕМА =====
-...ЧАСТЬ 2...
-
-  </script>
-// ===== ПРОФИЛЬ =====
-
-function profile(){
-
-    if(!user){
-        alert('Сначала войдите в аккаунт');
-        return;
-    }
-
-    page('view');
-
-    let stats=getStats(user);
-
-    document.getElementById('viewHead').innerHTML=`
-        <div class="post">
-
-            <h2>👤 ${esc(user)}</h2>
-
-            <div class="small">
-                Должность: ${esc(role)}
-            </div>
-
-        </div>
-    `;
-
-    document.getElementById('posts').innerHTML=`
-
-        <div class="card">
-
-            <div class="card-head">
-                📊 Статистика
-            </div>
-
-            <div class="post">
-                Тем создано: ${stats.topics}
-            </div>
-
-            <div class="post">
-                Сообщений: ${stats.posts}
-            </div>
-
-            <div class="post">
-                👍 Респектов: ${stats.respect}
-            </div>
-
-            <div class="post">
-                ⚠️ Предупреждений: ${stats.warns}
-            </div>
-
-        </div>
-
-        <div class="card">
-
-            <div class="card-head">
-                ⚙️ Настройки
-            </div>
-
-            <div class="form">
-
-                <button
-                onclick="changeNick()">
-                    ✏️ Сменить никнейм
-                </button>
-
-            </div>
-
-        </div>
-
-    `;
-
-    document.getElementById('reply').innerHTML='';
-}
-
-
-// ===== СТАТИСТИКА =====
-
-function getStats(nick){
-
-    let topicsCount=topics.filter(
-        t=>t.author===nick
-    ).length;
-
-    let postsCount=0;
-
-    topics.forEach(t=>{
-
-        t.posts.forEach(p=>{
-
-            if(p.author===nick)
-                postsCount++;
-
-        });
-
-    });
-
-    let respect=Number(
-        localStorage.getItem(
-            'respect_'+nick
-        )||0
-    );
-
-    let warns=Number(
-        localStorage.getItem(
-            'warns_'+nick
-        )||0
-    );
-
-    return {
-        topics:topicsCount,
-        posts:postsCount,
-        respect:respect,
-        warns:warns
-    };
-}
-
-
-// ===== СМЕНА НИКА =====
-
-function changeNick(){
-
-    if(!user)return;
-
-    let newNick=prompt(
-        'Введите новый никнейм:',
-        user
-    );
-
-    if(!newNick)return;
-
-    newNick=newNick.trim();
-
-    if(newNick.length<3){
-        alert('Минимум 3 символа');
-        return;
-    }
-
-    if(newNick.length>20){
-        alert('Максимум 20 символов');
-        return;
-    }
-
-    if(topics.some(
-        t=>t.author===newNick
-    )){
-        alert('Этот ник уже используется');
-        return;
-    }
-
-    topics.forEach(t=>{
-
-        if(t.author===user)
-            t.author=newNick;
-
-        t.posts.forEach(p=>{
-
-            if(p.author===user)
-                p.author=newNick;
-
-        });
-
-    });
-
-    let oldRole=role;
-
-    if(
-        oldRole!=='Создатель' &&
-        oldRole!=='Создатель 2'
-    ){
-
-        localStorage.removeItem(
-            'role_'+user
-        );
-
-        localStorage.setItem(
-            'role_'+newNick,
-            oldRole
-        );
-
-    }
-
-    user=newNick;
-
-    localStorage.setItem(
-        'everest_user',
-        user
-    );
-
-    localStorage.setItem(
-        'everest_role',
-        role
-    );
-
-    save();
-
-    alert(
-        'Никнейм изменён на '+newNick
-    );
-
-    location.reload();
-}
-
-
-// ===== РЕСПЕКТ =====
-
-function giveRespect(nick){
-
-    if(!nick)return;
-
-    if(!user){
-        alert('Войдите на форум');
-        return;
-    }
-
-    if(user===nick){
-        alert('Нельзя поставить Респект самому себе');
-        return;
-    }
-
-    let key=
-        'gave_respect_'+user+'_'+nick;
-
-    if(localStorage.getItem(key)){
-        alert('Вы уже поставили Респект');
-        return;
-    }
-
-    let value=Number(
-        localStorage.getItem(
-            'respect_'+nick
-        )||0
-    );
-
-    value++;
-
-    localStorage.setItem(
-        'respect_'+nick,
-        value
-    );
-
-    localStorage.setItem(
-        key,
-        '1'
-    );
-
-    alert('👍 Респект отправлен!');
-}
-
-
-// ===== ПРЕДУПРЕЖДЕНИЕ =====
-
-function warnUser(nick){
-
-    if(!isAdmin()){
-        alert('Нет доступа');
-        return;
-    }
-
-    let reason=prompt(
-        'Причина предупреждения:'
-    );
-
-    if(!reason)return;
-
-    let key='warns_'+nick;
-
-    let value=Number(
-        localStorage.getItem(key)||0
-    );
-
-    value++;
-
-    localStorage.setItem(
-        key,
-        value
-    );
-
-    alert(
-        'Пользователь '+nick+
-        ' получил предупреждение.'
-    );
-}
-
-
-// ===== ВЫХОД =====
-
-function logout(){
-
-    user=null;
-    role='guest';
-
-    localStorage.removeItem(
-        'everest_user'
-    );
-
-    localStorage.removeItem(
-        'everest_role'
-    );
-
-    alert('Вы вышли из аккаунта');
-
-    location.reload();
-}
-
-// ===== КНОПКИ ПОЛЬЗОВАТЕЛЯ =====
-
-function addUserButtons(){
-
-    let nav=document.querySelector('nav');
-
-    if(!nav)return;
-
-    // Профиль
-    if(user && !document.getElementById('profileBtn')){
-
-        let b=document.createElement('button');
-
-        b.id='profileBtn';
-        b.textContent='👤 Профиль';
-
-        b.onclick=profile;
-
-        nav.appendChild(b);
-    }
-
-    // Вход
-    if(!user && !document.getElementById('loginBtn')){
-
-        let b=document.createElement('button');
-
-        b.id='loginBtn';
-        b.textContent='🔑 Войти';
-
-        b.onclick=login;
-
-        nav.appendChild(b);
-    }
-
-    // Выход
-    if(user && !document.getElementById('logoutBtn')){
-
-        let b=document.createElement('button');
-
-        b.id='logoutBtn';
-        b.textContent='🚪 Выйти';
-
-        b.onclick=logout;
-
-        nav.appendChild(b);
-    }
-}
-
-
-// ===== КНОПКА СОЗДАТЬ ТЕМУ =====
-
-function addTopicButton(){
-
-    if(!user)return;
-
-    let box=document.getElementById('topics');
-
-    if(!box)return;
-}
-
-
-// ===== ЗАПУСК ИНТЕРФЕЙСА =====
-
-setTimeout(function(){
-
-    addUserButtons();
-
-    addAdminButton();
-
-    addFounderButton();
-
-},200);
-
-
-// ===== ИНФОРМАЦИЯ О СЕРВЕРЕ =====
-
-function serverInfo(){
-
-    page('view');
-
-    document.getElementById('viewHead').innerHTML=`
-
-        <div class="post">
-
-            <h2>🏔️ ALPINE</h2>
-
-            <div class="small">
-                Информация о сервере
-            </div>
-
-        </div>
-
-    `;
-
-    document.getElementById('posts').innerHTML=`
-
-        <div class="post">
-
-            <h3>📌 О сервере</h3>
-
-            <p>
-            ALPINE — основной сервер
-            EVEREST RUSSIA.
-            </p>
-
-        </div>
-
-        <div class="post">
-
-            <h3>📜 Правила</h3>
-
-            <p>
-            Соблюдайте правила форума,
-            уважайте пользователей и
-            администрацию.
-            </p>
-
-        </div>
-
-        <div class="post">
-
-            <h3>📢 Новости</h3>
-
-            <p>
-            Новости проекта публикуются
-            администрацией.
-            </p>
-
-        </div>
-
-    `;
-
-    document.getElementById('reply').innerHTML='';
-
-}
-
+let
