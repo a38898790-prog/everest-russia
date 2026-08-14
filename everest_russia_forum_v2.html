@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EVEREST RUSSIA — Форум</title>
+<style>
+:root{--bg:#070b11;--panel:#0e151f;--panel2:#121c28;--line:#1d2a39;--text:#edf3f8;--muted:#8999aa;--blue:#35a7ff;--blue2:#1475c5;--green:#42d47d;--red:#ef5d67}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -20%,#193956,#070b11 45%);color:var(--text);font:14px Inter,Segoe UI,Arial,sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}
+.wrap{max-width:1180px;margin:auto;padding:0 18px}.top{height:66px;background:#080d14ee;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;backdrop-filter:blur(12px)}.top .wrap{height:100%;display:flex;align-items:center;gap:28px}
+.logo{font-size:20px;font-weight:900;letter-spacing:1.5px}.logo span{color:var(--blue)}nav{display:flex;gap:20px;color:var(--muted)}nav a:hover{color:white}.account{margin-left:auto;display:flex;align-items:center;gap:10px}
+.avatar{width:35px;height:35px;border-radius:9px;background:linear-gradient(135deg,#35a7ff,#5e60e9);display:grid;place-items:center;font-weight:900}
+main{padding:35px 0 55px}.hero{margin-bottom:22px}.hero h1{font-size:36px;margin:0 0 7px}.hero p{color:var(--muted);margin:0;line-height:1.55}.actions{display:flex;gap:9px;margin-top:20px}
+.btn{border:1px solid var(--line);background:var(--panel);color:white;padding:10px 15px;border-radius:8px;font-weight:750}.btn.primary{border:0;background:linear-gradient(135deg,var(--blue),var(--blue2))}.btn.danger{background:#2a1115;border-color:#4a2025;color:#ff9aa0}
+.layout{display:grid;grid-template-columns:1fr 310px;gap:18px}.card{background:linear-gradient(180deg,#111a25,#0c131c);border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:0 12px 30px #0004}.head{padding:15px 18px;border-bottom:1px solid var(--line);font-weight:850;display:flex;justify-content:space-between}.row{display:grid;grid-template-columns:48px 1fr 100px 95px;gap:14px;align-items:center;padding:16px 18px;border-bottom:1px solid var(--line);cursor:pointer}.row:last-child{border:0}.row:hover{background:#142131}.ico{width:40px;height:40px;border-radius:9px;background:#15283c;display:grid;place-items:center;font-size:18px}.title{font-weight:800;margin-bottom:5px}.sub{font-size:12px;color:var(--muted)}.stat{text-align:center;color:var(--muted);font-size:11px}.stat b{display:block;color:#dce6ef;font-size:14px}
+.sidebox{padding:18px;border-bottom:1px solid var(--line)}.sidebox:last-child{border:0}.sidebox h3{margin:0 0 14px}.status{display:inline-flex;align-items:center;gap:7px;padding:5px 9px;border-radius:6px;background:#122b20;color:#70e79a;font-size:12px;font-weight:800}.dot{width:7px;height:7px;background:var(--green);border-radius:50%}.profile{display:flex;gap:12px;align-items:center}.bigavatar{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,#35a7ff,#5e60e9);display:grid;place-items:center;font-size:20px;font-weight:900}.muted{color:var(--muted)}.topic{padding:15px 18px;border-bottom:1px solid var(--line);cursor:pointer}.topic:last-child{border:0}.topic:hover{background:#142131}.topic b{display:block;margin-bottom:5px}.topic small{color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:23px 0;color:var(--muted);font-size:12px}
+.modal{display:none;position:fixed;inset:0;background:#000a;z-index:50;align-items:center;justify-content:center;padding:18px}.modal.open{display:flex}.box{width:min(560px,100%);background:#101925;border:1px solid var(--line);border-radius:12px;padding:22px;box-shadow:0 25px 80px #000}.box h2{margin-top:0}.box label{display:block;font-size:12px;color:var(--muted);margin:10px 0 5px}input,textarea{width:100%;background:#080f17;border:1px solid var(--line);border-radius:7px;padding:11px;color:white;outline:0}textarea{min-height:110px;resize:vertical}.msg{font-size:12px;margin:8px 0;color:#ff9aa0}.hidden{display:none!important}
+.tabs{display:flex;gap:8px;margin-bottom:18px}.tabs button{background:transparent;border:1px solid var(--line);color:var(--muted);padding:8px 12px;border-radius:7px}.tabs button.active{background:#122a40;color:#8bcfff;border-color:#24547b}
+.page{display:none}.page.active{display:block}
+@media(max-width:800px){nav{display:none}.layout{grid-template-columns:1fr}.row{grid-template-columns:44px 1fr}.row .stat{display:none}.hero h1{font-size:29px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+<div class="logo">EVEREST <span>RUSSIA</span></div>
+<nav><a href="#" onclick="showPage('home');return false">Главная</a><a href="#" onclick="showPage('home');return false">Разделы</a><a href="#" onclick="showPage('profile');return false">Мой профиль</a></nav>
+<div class="account" id="account"></div>
+</div></header>
+
+<main class="wrap">
+<section id="home" class="page active">
+<div class="hero"><h1>Форум EVEREST RUSSIA</h1><p>Игровое сообщество проекта. Здесь можно общаться, создавать темы и обсуждать сервер <b>RED</b>.</p>
+<div class="actions"><button class="btn primary" onclick="openTopic()">Создать тему</button><button class="btn" onclick="showPage('profile')">Мой профиль</button></div></div>
+<div class="tabs"><button class="active">Все разделы</button><button onclick="filterRed()">Сервер RED</button></div>
+<div class="layout"><div class="card" id="forums"></div>
+<aside class="card"><div class="sidebox" id="sideProfile"></div><div class="sidebox"><h3>Последние темы</h3><div id="latest"></div></div></aside></div>
+</section>
+
+<section id="profile" class="page">
+<div class="hero"><h1>Профиль</h1><p>Твой профиль на форуме EVEREST RUSSIA.</p></div>
+<div class="card"><div class="sidebox" id="fullProfile"></div></div>
+</section>
+</main>
+
+<footer><div class="wrap">© 2026 EVEREST RUSSIA · Сервер RED</div></footer>
+
+<div class="modal" id="authModal"><div class="box"><h2 id="authTitle">Регистрация</h2><div id="authFields"></div><div id="authMsg" class="msg"></div><button class="btn primary" onclick="submitAuth()">Продолжить</button> <button class="btn" onclick="closeModal()">Закрыть</button><p id="authSwitch" class="muted" style="margin-top:15px"></p></div></div>
+
+<div class="modal" id="topicModal"><div class="box"><h2>Создать тему</h2><label>Раздел</label><select id="topicForum" style="width:100%;padding:11px;background:#080f17;color:#fff;border:1px solid var(--line);border-radius:7px"><option>Сервер RED</option><option>Общий раздел</option><option>Новости проекта</option><option>Техническая поддержка</option></select><label>Название темы</label><input id="topicTitle" placeholder="Например: Вопрос по серверу RED"><label>Сообщение</label><textarea id="topicText" placeholder="Напишите сообщение..."></textarea><div id="topicMsg" class="msg"></div><button class="btn primary" onclick="createTopic()">Опубликовать</button> <button class="btn" onclick="closeModal()">Отмена</button></div></div>
+
+<script>
+const KEY='everest_russia_demo_v2';
+let state=JSON.parse(localStorage.getItem(KEY)||'null')||{
+ user:null,users:[],topics:[]
+};
+function save(){localStorage.setItem(KEY,JSON.stringify(state))}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function showPage(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');render()}
+function openModal(id){document.getElementById(id).classList.add('open')}
+function closeModal(){document.querySelectorAll('.modal').forEach(x=>x.classList.remove('open'))}
+function auth(mode){document.getElementById('authTitle').textContent=mode==='reg'?'Регистрация':'Вход';document.getElementById('authFields').innerHTML=mode==='reg'?'<label>Имя пользователя</label><input id="authName" placeholder="Ваш ник"><label>Пароль</label><input id="authPass" type="password" placeholder="Пароль">':'<label>Имя пользователя</label><input id="authName" placeholder="Ваш ник"><label>Пароль</label><input id="authPass" type="password" placeholder="Пароль">';document.getElementById('authModal').dataset.mode=mode;document.getElementById('authSwitch').innerHTML=mode==='reg'?'Уже есть аккаунт? <a href="#" style="color:#55b5ff" onclick="auth(\\'login\\');return false">Войти</a>':'Нет аккаунта? <a href="#" style="color:#55b5ff" onclick="auth(\\'reg\\');return false">Зарегистрироваться</a>';openModal('authModal')}
+function submitAuth(){let name=document.getElementById('authName').value.trim(),pass=document.getElementById('authPass').value;if(name.length<3||pass.length<4){document.getElementById('authMsg').textContent='Ник: минимум 3 символа, пароль: минимум 4.';return}let mode=document.getElementById('authModal').dataset.mode;if(mode==='reg'){if(state.users.some(u=>u.name.toLowerCase()===name.toLowerCase())){document.getElementById('authMsg').textContent='Такой пользователь уже существует.';return}let u={name,pass,status:'Игрок',server:'RED',joined:new Date().toLocaleDateString('ru-RU')};state.users.push(u);state.user=u;save();closeModal();render()}else{let u=state.users.find(x=>x.name===name&&x.pass===pass);if(!u){document.getElementById('authMsg').textContent='Неверный ник или пароль.';return}state.user=u;save();closeModal();render()}}
+function logout(){state.user=null;save();render()}
+function render(){let a=document.getElementById('account');if(state.user)a.innerHTML='<span>'+esc(state.user.name)+'</span><div class="avatar">'+esc(state.user.name[0].toUpperCase())+'</div><button class="btn" onclick="logout()">Выйти</button>';else a.innerHTML='<button class="btn" onclick="auth(\\'login\\')">Войти</button><button class="btn primary" onclick="auth(\\'reg\\')">Регистрация</button>';
+let p=state.user?'<div class="profile"><div class="bigavatar">'+esc(state.user.name[0].toUpperCase())+'</div><div><h3 style="margin:0 0 6px">'+esc(state.user.name)+'</h3><span class="status"><span class="dot"></span> Игрок</span></div></div><p class="muted">Сервер: <b style="color:#fff">RED</b></p>':'<h3>Добро пожаловать</h3><p class="muted">Войди или зарегистрируйся, чтобы создавать темы.</p><button class="btn primary" onclick="auth(\\'reg\\')">Создать аккаунт</button>';document.getElementById('sideProfile').innerHTML=p;
+document.getElementById('fullProfile').innerHTML=state.user?'<div class="profile"><div class="bigavatar">'+esc(state.user.name[0].toUpperCase())+'</div><div><h2 style="margin:0 0 7px">'+esc(state.user.name)+'</h2><span class="status"><span class="dot"></span> Игрок</span></div></div><hr style="border-color:var(--line);border-width:1px 0 0;margin:20px 0"><p><span class="muted">Сервер:</span> RED</p><p><span class="muted">Дата регистрации:</span> '+esc(state.user.joined)+'</p><p><span class="muted">Тем создано:</span> '+state.topics.filter(t=>t.author===state.user.name).length+'</p>':'<p class="muted">Ты не авторизован.</p><button class="btn primary" onclick="auth(\\'reg\\')">Регистрация</button>';
+let forums=[['📢','Новости проекта','Объявления и обновления проекта','0','0'],['🔴','Сервер RED','Обсуждение сервера RED, игровой процесс и вопросы','0','0'],['💬','Общий раздел','Свободное общение игроков','0','0'],['🛠','Техническая поддержка','Проблемы, ошибки и помощь','0','0'],['💡','Предложения','Идеи и предложения игроков','0','0']];document.getElementById('forums').innerHTML='<div class="head"><span>Разделы форума</span><span class="muted">Темы · Сообщения</span></div>'+forums.map(f=>'<div class="row" onclick="openForum(\\''+f[1]+'\\')"><div class="ico">'+f[0]+'</div><div><div class="title">'+f[1]+'</div><div class="sub">'+f[2]+'</div></div><div class="stat"><b>'+state.topics.filter(t=>t.forum===f[1]).length+'</b>тем</div><div class="stat"><b>'+state.topics.filter(t=>t.forum===f[1]).length+'</b>сообщ.</div></div>').join('');
+let topics=state.topics.slice(-5).reverse();document.getElementById('latest').innerHTML=topics.length?topics.map(t=>'<div class="topic"><b>'+esc(t.title)+'</b><small>'+esc(t.author)+' · '+esc(t.forum)+'</small></div>').join(''):'<div class="muted">Пока нет тем.</div>'}
+function openForum(f){alert('Раздел «'+f+'». Здесь будут отображаться темы.')}
+function filterRed(){alert('Фильтр: сервер RED')}
+function openTopic(){if(!state.user){auth('login');return}document.getElementById('topicMsg').textContent='';openModal('topicModal')}
+function createTopic(){let title=document.getElementById('topicTitle').value.trim(),text=document.getElementById('topicText').value.trim(),forum=document.getElementById('topicForum').value;if(!title||!text){document.getElementById('topicMsg').textContent='Заполни название и сообщение.';return}state.topics.push({title,text,forum,author:state.user.name,date:new Date().toLocaleString('ru-RU')});save();document.getElementById('topicTitle').value='';document.getElementById('topicText').value='';closeModal();render()}
+render();
+</script>
+</body></html>
