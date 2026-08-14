@@ -1,704 +1,397 @@
 here <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>EVEREST RUSSIA</title>
-
-<style>
-*{box-sizing:border-box}
-body{
-margin:0;
-background:#080b10;
-color:#e9edf2;
-font-family:Arial,sans-serif
-}
-header{
-background:#10151c;
-border-bottom:1px solid #29323d;
-position:sticky;
-top:0;
-z-index:10
-}
-.wrap{
-max-width:1050px;
-margin:auto;
-padding:0 14px
-}
-.top{
-min-height:65px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:15px
-}
-.logo{
-font-size:21px;
-font-weight:bold;
-color:#d9aa52
-}
-nav{
-display:flex;
-gap:6px;
-overflow:auto
-}
-button{
-border:1px solid #303b47;
-background:#151c24;
-color:#e9edf2;
-padding:10px 13px;
-border-radius:7px;
-cursor:pointer
-}
-button:hover{background:#202a35}
-.gold{
-background:#cda04c;
-border-color:#cda04c;
-color:#111;
-font-weight:bold
-}
-.danger{
-background:#461b22;
-border-color:#743039;
-color:#ffadb6
-}
-main{padding:25px 0}
-.page{display:none}
-.page.active{display:block}
-.hero{
-padding:35px 25px;
-background:linear-gradient(135deg,#121a23,#0d1117);
-border:1px solid #293542;
-border-radius:12px;
-margin-bottom:18px
-}
-.hero h1{
-font-size:38px;
-margin:8px 0
-}
-.muted{color:#8d99a6}
-.card{
-background:#111820;
-border:1px solid #293542;
-border-radius:10px;
-margin-bottom:16px;
-overflow:hidden
-}
-.head{
-padding:16px;
-font-weight:bold;
-border-bottom:1px solid #293542
-}
-.row{
-display:flex;
-align-items:center;
-gap:14px;
-padding:17px;
-border-bottom:1px solid #252e38;
-cursor:pointer
-}
-.row:last-child{border:0}
-.row:hover{background:#171f28}
-.icon{font-size:25px}
-.grow{flex:1}
-.title{font-weight:bold}
-.small{
-font-size:12px;
-color:#8b97a4;
-margin-top:4px
-}
-.form{padding:18px}
-input,textarea,select{
-width:100%;
-background:#090d12;
-border:1px solid #303b47;
-color:white;
-border-radius:7px;
-padding:11px;
-margin:6px 0 14px
-}
-textarea{min-height:110px;resize:vertical}
-.actions{
-display:flex;
-gap:7px;
-flex-wrap:wrap
-}
-.topic{
-padding:16px;
-border-bottom:1px solid #29323b;
-cursor:pointer
-}
-.topic:hover{background:#171f28}
-.badge{
-display:inline-block;
-padding:4px 7px;
-border-radius:5px;
-font-size:11px;
-background:#303944;
-margin-right:5px
-}
-.green{
-background:#123a25;
-color:#7de1a1
-}
-.gray{color:#b8bec5}
-.post{
-padding:17px;
-border-bottom:1px solid #29323b
-}
-.lock{
-padding:14px;
-margin:15px;
-background:#292e34;
-border-radius:7px;
-color:#b8bec5
-}
-.empty{
-padding:35px;
-text-align:center;
-color:#7e8995
-}
-.profile{
-display:flex;
-align-items:center;
-gap:12px
-}
-.avatar{
-width:48px;
-height:48px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-background:#252f3a;
-font-size:22px
-}
-@media(max-width:650px){
-.top{align-items:flex-start;padding:12px 0;flex-direction:column}
-nav{width:100%}
-.hero h1{font-size:30px}
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALPINE CORE — Форум</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            --bg: #0a0c10;
+            --panel: #11151c;
+            --card: #171d26;
+            --accent: #3b82f6;
+            --gold: #f59e0b;
+            --danger: #ef4444;
+            --muted: #7d8590;
+            --border: #263041;
+        }
+        * { font-family: 'Inter', system-ui, sans-serif; }
+        body {
+            background: var(--bg);
+            color: #e2e8f0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+            margin: 0;
+        }
+        .app {
+            max-width: 1100px;
+            width: 100%;
+            background: var(--panel);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px -12px rgba(0,0,0,0.8);
+            overflow: hidden;
+        }
+        .top {
+            background: #0d1117;
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .logo {
+            font-weight: 800;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #fff;
+        }
+        .logo i { color: var(--gold); }
+        .badge-founder {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            color: #000;
+        }
+        .content {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+        }
+        .sidebar {
+            background: #0d1117;
+            padding: 16px 10px;
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .sidebar a {
+            color: var(--muted);
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .sidebar a:hover, .sidebar a.active {
+            background: var(--card);
+            color: #fff;
+        }
+        .sidebar a i { width: 18px; text-align: center; }
+        .main {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .server-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+        .server-header {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .server-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #fff;
+        }
+        .server-info h1 { font-size: 1.2rem; margin: 0; font-weight: 800; }
+        .server-info p { margin: 2px 0 0; color: var(--muted); font-size: 0.8rem; }
+        .sections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 8px;
+            padding: 16px 20px;
+        }
+        .section-btn {
+            background: #0d1117;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #e2e8f0;
+            text-decoration: none;
+            display: block;
+        }
+        .section-btn:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        .section-btn i { font-size: 1.4rem; display: block; margin-bottom: 6px; color: var(--accent); }
+        .section-btn span { font-weight: 600; font-size: 0.8rem; display: block; }
+        .section-btn small { color: var(--muted); font-size: 0.65rem; display: block; margin-top: 2px; }
+        .stats-row { display: flex; gap: 10px; flex-wrap: wrap; }
+        .stat-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 16px;
+            flex: 1;
+            min-width: 100px;
+            text-align: center;
+        }
+        .stat-card .num { font-size: 1.2rem; font-weight: 800; color: var(--accent); }
+        .stat-card .label { color: var(--muted); font-size: 0.75rem; }
+        .form-section {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px;
+        }
+        .form-section h3 {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .form-control {
+            background: #0d1117;
+            border: 1px solid var(--border);
+            color: #e2e8f0;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 0.85rem;
+        }
+        .form-control:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+            background: #0d1117;
+            color: #fff;
+        }
+        .btn-gold {
+            background: var(--gold);
+            color: #000;
+            font-weight: 700;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            transition: all 0.2s;
+            font-size: 0.85rem;
+        }
+        .btn-gold:hover { background: #fbbf24; transform: translateY(-1px); }
+        .btn-danger {
+            background: var(--danger);
+            color: #fff;
+            font-weight: 700;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            transition: all 0.2s;
+            font-size: 0.85rem;
+        }
+        .btn-danger:hover { background: #dc2626; transform: translateY(-1px); }
+        .verdict-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+        .verdict-green { background: rgba(34,197,94,0.2); color: #22c55e; }
+        .verdict-red { background: rgba(239,68,68,0.2); color: #ef4444; }
+        .verdict-gray { background: rgba(125,133,144,0.2); color: #7d8590; }
+        @media (max-width: 768px) {
+            .content { grid-template-columns: 1fr; }
+            .sidebar { flex-direction: row; flex-wrap: wrap; justify-content: center; border-right: none; border-bottom: 1px solid var(--border); }
+            .sidebar a { flex: 1; min-width: 80px; justify-content: center; font-size: 0.7rem; }
+        }
+    </style>
 </head>
-
 <body>
-
-<header>
-<div class="wrap top">
-
-<div class="logo">EVEREST RUSSIA</div>
-
-<nav id="nav">
-<button onclick="go('home')">Главная</button>
-<button onclick="go('alpine')">🏔️ ALPINE</button>
-<button onclick="go('topics')">Темы</button>
-<button onclick="go('applications')">Заявки</button>
-</nav>
-
-</div>
-</header>
-
-<main class="wrap">
-
-<section id="home" class="page active">
-
-<div class="hero">
-
-<div class="small">ОФИЦИАЛЬНЫЙ ФОРУМ</div>
-
-<h1>EVEREST RUSSIA</h1>
-
-<p class="muted">
-Форум проекта с сервером ALPINE.
-Новости, обсуждения, жалобы и заявки.
-</p>
-
-<div class="actions">
-
-<button class="gold" onclick="go('alpine')">
-🏔️ Открыть ALPINE
-</button>
-
-<button onclick="login()">
-🔑 Войти
-</button>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<div class="head">Разделы форума</div>
-
-<div class="row" onclick="go('alpine')">
-<div class="icon">🏔️</div>
-<div class="grow">
-<div class="title">ALPINE</div>
-<div class="small">Основной сервер</div>
-</div>
-</div>
-
-<div class="row" onclick="go('topics')">
-<div class="icon">💬</div>
-<div class="grow">
-<div class="title">Общие темы</div>
-<div class="small">Обсуждения пользователей</div>
-</div>
-</div>
-
-<div class="row" onclick="go('applications')">
-<div class="icon">📋</div>
-<div class="grow">
-<div class="title">Заявки</div>
-<div class="small">Лидер и администрация</div>
-</div>
-</div>
-
-</div>
-
-</section>
-
-
-<section id="alpine" class="page">
-
-<div class="card">
-
-<div class="head">🏔️ ALPINE</div>
-
-<div class="row" onclick="section('Государственные фракции')">
-<div class="icon">🏛️</div>
-<div class="grow">
-<div class="title">Государственные фракции</div>
-<div class="small">Организации и обсуждения</div>
-</div>
-</div>
-
-<div class="row" onclick="section('Криминальные фракции')">
-<div class="icon">🔪</div>
-<div class="grow">
-<div class="title">Криминальные фракции</div>
-<div class="small">Организации и обсуждения</div>
-</div>
-</div>
-
-<div class="row" onclick="complaint('admin')">
-<div class="icon">⚖️</div>
-<div class="grow">
-<div class="title">Жалобы на администрацию</div>
-<div class="small">Подать жалобу</div>
-</div>
-</div>
-
-<div class="row" onclick="complaint('player')">
-<div class="icon">🚨</div>
-<div class="grow">
-<div class="title">Жалобы на игроков</div>
-<div class="small">Подать жалобу</div>
-</div>
-</div>
-
-<div class="row" onclick="serverInfo()">
-<div class="icon">ℹ️</div>
-<div class="grow">
-<div class="title">Информация о сервере</div>
-<div class="small">Основная информация ALPINE</div>
-</div>
-</div>
-
-</div>
-
-<button onclick="go('home')">← Назад</button>
-
-</section>
-
-
-<section id="topics" class="page">
-
-<div class="card">
-
-<div class="head">💬 Темы</div>
-
-<div id="topicList"></div>
-
-</div>
-
-<button class="gold" onclick="newTopic()">
-＋ Создать тему
-</button>
-
-<button onclick="go('home')">
-← Назад
-</button>
-
-</section>
-
-
-<section id="applications" class="page">
-
-<div class="card">
-
-<div class="head">📋 Заявки</div>
-
-<div class="row" onclick="application('leader')">
-<div class="icon">👑</div>
-<div class="grow">
-<div class="title">Заявка на лидера</div>
-<div class="small">Отдельная форма</div>
-</div>
-</div>
-
-<div class="row" onclick="application('admin')">
-<div class="icon">🛡️</div>
-<div class="grow">
-<div class="title">Заявка на администратора</div>
-<div class="small">Отдельная форма</div>
-</div>
-</div>
-
-</div>
-
-<button onclick="go('home')">
-← Назад
-</button>
-
-</section>
-
-
-<section id="view" class="page">
-
-<div class="card">
-
-<div id="viewHead"></div>
-<div id="viewBody"></div>
-<div id="viewActions"></div>
-
-</div>
-
-<button onclick="go('topics')">
-← К темам
-</button>
-
-</section>
-
-
-<section id="section" class="page">
-
-<div class="card">
-
-<div class="head" id="sectionTitle"></div>
-
-<div id="sectionList"></div>
-
-</div>
-
-<button onclick="go('alpine')">
-← ALPINE
-</button>
-
-</section>
-
-
-<section id="admin" class="page">
-
-<div class="card">
-
-<div class="head">
-🛡️ Панель администрации
-</div>
-
-<div id="adminContent"></div>
-
-</div>
-
-</section>
-
-
-<section id="profile" class="page">
-
-<div class="card">
-
-<div class="head">
-👤 Профиль
-</div>
-
-<div id="profileContent"></div>
-
-</div>
-
-</section>
-
-</main>
-
-
-<script>
-
-let user=localStorage.getItem("user")||"";
-let role=localStorage.getItem("role")||"";
-
-let topics=JSON.parse(
-localStorage.getItem("topics")||"[]"
-);
-
-let applications=JSON.parse(
-localStorage.getItem("applications")||"[]"
-);
-
-let complaints=JSON.parse(
-localStorage.getItem("complaints")||"[]"
-);
-
-let current=null;
-
-
-if(!topics.length){
-
-topics=[{
-id:1,
-title:"Добро пожаловать на форум",
-category:"Общие",
-author:"Создатель",
-text:"Добро пожаловать на EVEREST RUSSIA!",
-closed:false,
-posts:[]
-}];
-
-save();
-}
-
-
-function save(){
-
-localStorage.setItem(
-"topics",
-JSON.stringify(topics)
-);
-
-localStorage.setItem(
-"applications",
-JSON.stringify(applications)
-);
-
-localStorage.setItem(
-"complaints",
-JSON.stringify(complaints)
-);
-
-}
-
-
-function esc(x){
-
-return String(x).replace(
-/[&<>"']/g,
-m=>({
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-'"':"&quot;",
-"'":"&#039;"
-}[m])
-);
-
-}
-
-
-function go(id){
-
-document.querySelectorAll(
-".page"
-).forEach(x=>x.classList.remove("active"));
-
-document.getElementById(id)
-.classList.add("active");
-
-if(id==="topics")renderTopics();
-
-if(id==="profile")renderProfile();
-
-if(id==="admin")renderAdmin();
-
-}
-
-
-function login(){
-
-let nick=prompt("Введите ник:");
-
-if(!nick)return;
-
-nick=nick.trim();
-
-if(!nick)return;
-
-/*
-Демо-роли.
-
-Для настоящей защиты нужен сервер.
-*/
-
-if(nick.toLowerCase()==="создатель"){
-role="Создатель";
-}
-
-else if(
-nick.toLowerCase()==="создатель 2"
-){
-role="Создатель 2";
-}
-
-else if(
-localStorage.getItem("role_"+nick)
-){
-role=localStorage.getItem("role_"+nick);
-}
-
-else{
-role="Игрок";
-}
-
-user=nick;
-
-localStorage.setItem(
-"user",user
-);
-
-localStorage.setItem(
-"role",role
-);
-
-alert(
-"Вы вошли как: "+role
-);
-
-location.reload();
-
-}
-
-
-function isAdmin(){
-
-return [
-"Создатель",
-"Создатель 2",
-"Администратор",
-"Модератор"
-].includes(role);
-
-}
-
-
-function isFounder(){
-
-return [
-"Создатель",
-"Создатель 2"
-].includes(role);
-
-}
-
-
-function renderTopics(){
-
-let box=document.getElementById(
-"topicList"
-);
-
-if(!topics.length){
-
-box.innerHTML=
-'<div class="empty">Тем нет</div>';
-
-return;
-
-}
-
-box.innerHTML=topics
-.slice()
-.reverse()
-.map(t=>`
-
-<div class="topic"
-onclick="openTopic(${t.id})">
-
-${t.closed?
-'<span class="badge gray">🔒 Закрыта</span>':
-''}
-
-<b>${esc(t.title)}</b>
-
-<div class="small">
-${esc(t.category)} ·
-${esc(t.author)}
-</div>
-
-</div>
-
-`).join("");
-
-}
-
-
-function openTopic(id){
-
-current=topics.find(
-t=>t.id===id
-);
-
-if(!current)return;
-
-go("view");
-
-document.getElementById(
-"viewHead"
-).innerHTML=`
-
-<div class="post">
-
-<h2>${esc(current.title)}</h2>
-
-<div class="small">
-${esc(current.category)}
-· ${esc(current.author)}
-</div>
-
-</div>
-
-`;
-
-let html=`
-
-<div class="post">
-${esc(current.text)}
-</div>
-
-`;
-
-current.posts.forEach(p=>{
-
-html+=`
-
-<div class="post">
-
-<b>${esc(p.author)}</b>
-
-<div class="small">
-${esc(p.date)}
-</div>
-
-<br>
-
-${esc(p.text)}
-
-</div>
-
-`;
-
-});
-
-document.getElementById(
-"viewBody"
-).innerHTML=html;
-
-
-let
+    <div class="app">
+        <!-- Верх -->
+        <div class="top">
+            <div class="logo"><i class="bi bi-mountain-snow"></i> ALPINE CORE</div>
+            <div><i class="bi bi-person-circle"></i> Founder <span class="badge-founder">FOUNDER</span></div>
+        </div>
+
+        <div class="content">
+            <!-- Меню -->
+            <div class="sidebar">
+                <a href="#" class="active"><i class="bi bi-house-door"></i> Главная</a>
+                <a href="#"><i class="bi bi-controller"></i> Серверы</a>
+                <a href="#"><i class="bi bi-people"></i> Администрация</a>
+                <a href="#"><i class="bi bi-book"></i> Правила</a>
+                <a href="#"><i class="bi bi-clipboard-check"></i> Заявки</a>
+                <a href="#"><i class="bi bi-gear"></i> Настройки</a>
+            </div>
+
+            <!-- Контент -->
+            <div class="main">
+                <!-- Сервер ALPINE -->
+                <div class="server-card">
+                    <div class="server-header">
+                        <div class="server-icon">A</div>
+                        <div class="server-info">
+                            <h1>🏔️ ALPINE RP</h1>
+                            <p>Основной сервер проекта</p>
+                        </div>
+                    </div>
+                    <div class="sections-grid">
+                        <a href="#info" class="section-btn">
+                            <i class="bi bi-megaphone"></i><span>Информация</span><small>Правила, FAQ</small>
+                        </a>
+                        <a href="#gov" class="section-btn">
+                            <i class="bi bi-bank"></i><span>Гос. фракции</span><small>Полиция, Мэрия</small>
+                        </a>
+                        <a href="#crime" class="section-btn">
+                            <i class="bi bi-cash-coin"></i><span>Криминал</span><small>Мафии, Банды</small>
+                        </a>
+                        <a href="#complaint-admin" class="section-btn">
+                            <i class="bi bi-shield-x"></i><span>Жалобы на админов</span><small>Форма</small>
+                        </a>
+                        <a href="#complaint-player" class="section-btn">
+                            <i class="bi bi-person-x"></i><span>Жалобы на игроков</span><small>Форма</small>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Статистика -->
+                <div class="stats-row">
+                    <div class="stat-card"><div class="num">24</div><div class="label">Тем</div></div>
+                    <div class="stat-card"><div class="num">156</div><div class="label">Сообщений</div></div>
+                    <div class="stat-card"><div class="num">89</div><div class="label">Игроков</div></div>
+                    <div class="stat-card"><div class="num">3</div><div class="label">Жалобы</div></div>
+                </div>
+
+                <!-- Жалоба на админа -->
+                <div class="form-section" id="complaint-admin">
+                    <h3><i class="bi bi-shield-x"></i> Жалоба на администратора</h3>
+                    <form onsubmit="alert('Жалоба отправлена!'); return false;">
+                        <div class="row g-2">
+                            <div class="col-md-6">
+                                <label class="form-label text-muted small">Ваш ник</label>
+                                <input type="text" class="form-control" placeholder="Ваш ник" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-muted small">Ник админа</label>
+                                <input type="text" class="form-control" placeholder="Ник администратора" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label text-muted small">Суть жалобы</label>
+                                <textarea class="form-control" rows="3" placeholder="Опишите ситуацию..." required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label text-muted small">Доказательства</label>
+                                <input type="file" class="form-control" multiple accept="image/*,video/*">
+                            </div>
+                            <div class="col-12 mt-2">
+                                <button type="submit" class="btn-gold w-100"><i class="bi bi-send"></i> Отправить</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Жалоба на игрока -->
+                <div class="form-section" id="complaint-player">
+                    <h3><i class="bi bi-person-x"></i> Жалоба на игрока</h3>
+                    <form onsubmit="alert('Жалоба отправлена!'); return false;">
+                        <div class="row g-2">
+                            <div class="col-md-6">
+                                <label class="form-label text-muted small">Ваш ник</label>
+                                <input type="text" class="form-control" placeholder="Ваш ник" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-muted small">Ник игрока</label>
+                                <input type="text" class="form-control" placeholder="Ник нарушителя" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label text-muted small">Суть жалобы</label>
+                                <textarea class="form-control" rows="3" placeholder="Опишите ситуацию..." required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label text-muted small">Доказательства</label>
+                                <input type="file" class="form-control" multiple accept="image/*,video/*">
+                            </div>
+                            <div class="col-12 mt-2">
+                                <button type="submit" class="btn-gold w-100"><i class="bi bi-send"></i> Отправить</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Управление персоналом -->
+                <div class="form-section">
+                    <h3><i class="bi bi-person-gear"></i> Управление персоналом</h3>
+                    <p class="text-muted small">FOUNDER: бан, кик, мут, назначение.</p>
+                    <div class="row g-2">
+                        <div class="col-md-4">
+                            <label class="form-label text-muted small">Ник</label>
+                            <input type="text" class="form-control" placeholder="Введите ник">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label text-muted small">Должность</label>
+                            <select class="form-control">
+                                <option>Админ</option>
+                                <option>Модератор</option>
+                                <option>Старший модератор</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 d-flex align-items-end gap-2">
+                            <button class="btn-gold flex-fill" onclick="alert('Назначен!')"><i class="bi bi-check2"></i></button>
+                            <button class="btn-danger flex-fill" onclick="alert('Забанен!')"><i class="bi bi-ban"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Вердикты -->
+                <div class="form-section">
+                    <h3><i class="bi bi-list-check"></i> Вердикты</h3>
+                    <span class="verdict-badge verdict-green">✅ Одобрено</span>
+                    <span class="verdict-badge verdict-red">🚫 Отказано</span>
+                    <span class="verdict-badge verdict-gray">🔒 Закрыто</span>
+                    <p class="text-muted small mt-2 mb-0"><i class="bi bi-info-circle"></i> После закрытия темы писать нельзя.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.section-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    target.style.borderColor = '#3b82f6';
+                    setTimeout(() => target.style.borderColor = '', 1500);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
