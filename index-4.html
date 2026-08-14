@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>EVEREST RUSSIA — Форум</title>
+<style>
+:root{--bg:#1f242a;--p:#2a3037;--p2:#333a43;--line:#4b5560;--txt:#f5f7fa;--muted:#aeb6c0;--blue:#32a8ff;--red:#ed4545;--gold:#ffbd2e;--green:#31cf87}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font:15px Arial,sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer}
+header{position:sticky;top:0;z-index:30;background:#191e23;border-bottom:1px solid #3a4149}.bar{max-width:1100px;margin:auto;display:flex;align-items:center;gap:10px;padding:12px 15px}.logo{font-size:25px;font-weight:900;line-height:.85;margin-right:auto}.logo i{font-style:normal;color:var(--blue)}.btn{background:#30363e;color:#fff;border:1px solid #56606c;border-radius:10px;padding:10px 14px;font-weight:700}.btn:hover{background:#3a424c}.primary{background:#168fe8;border-color:#168fe8}.danger{background:#c9333d;border-color:#c9333d}.menu{font-size:25px;background:transparent;border:0;color:#fff}
+main{max-width:1100px;margin:20px auto;padding:0 15px}.hero{border:1px solid var(--line);border-radius:18px;padding:22px;background:linear-gradient(135deg,#303740,#252b31);margin-bottom:16px}.hero h1{margin:0 0 7px}.muted{color:var(--muted)}
+.card{background:var(--p);border:1px solid var(--line);border-radius:16px;padding:15px;margin:10px 0}.cat{display:flex;align-items:center;gap:15px}.ico{width:60px;height:60px;border-radius:15px;background:#20252b;display:grid;place-items:center;font-size:29px}.grow{flex:1}.cat h2{margin:0 0 6px}.arrow{font-size:30px;color:#c7cdd3}.tag{display:inline-block;border-radius:7px;padding:4px 7px;font-size:12px;font-weight:800}.new{background:var(--red)}.leader{color:#2da9ff}.owner{color:#ff4cda}.team{color:#ffc21c}.crime{color:#111;background:#eee}.devmain{color:#ff8b45}.dev{color:#c17bff}.tech{color:#c7d0d9}
+.modal{display:none;position:fixed;inset:0;background:#000b;z-index:100;align-items:center;justify-content:center;padding:14px}.modal.on{display:flex}.box{width:min(900px,100%);max-height:94vh;overflow:auto;background:#252b31;border:1px solid #59636f;border-radius:18px;padding:20px}.close{float:right;background:#3b434d;color:#fff;border:0;border-radius:8px;padding:7px 10px}.field{margin:11px 0}.field label{display:block;margin-bottom:6px;font-weight:700}.field input,.field textarea,.field select{width:100%;background:#1e2328;color:#fff;border:1px solid #505b66;border-radius:10px;padding:11px}.field textarea{min-height:110px;resize:vertical}.row{display:flex;gap:8px;flex-wrap:wrap}.topic{cursor:pointer}.topic:hover{background:#333a43}.topic h3{margin:0 0 6px}.post{border-top:1px solid #48515b;padding:14px 0}.post:first-child{border-top:0}.posttext{white-space:pre-wrap;line-height:1.5}.user{display:flex;gap:11px;align-items:center}.avatar{width:48px;height:48px;border-radius:50%;background:#424b55;display:grid;place-items:center;font-weight:900;overflow:hidden}.avatar img{width:100%;height:100%;object-fit:cover}.side{position:fixed;z-index:80;left:0;top:0;bottom:0;width:290px;background:#1b2025;border-right:1px solid #48515a;padding:18px;transform:translateX(-105%);transition:.2s}.side.open{transform:none}.side a{display:block;padding:12px;border-radius:9px;margin:5px 0}.side a:hover{background:#30363d}.shade{display:none;position:fixed;inset:0;background:#0008;z-index:70}.shade.on{display:block}.hidden{display:none!important}.notice{padding:11px;background:#3b311a;border:1px solid #725c27;border-radius:10px;color:#ffd66a;margin:10px 0}.empty{text-align:center;padding:30px;color:var(--muted)}.role{font-weight:900}.section-title{margin-top:22px}
+@media(max-width:600px){.bar{padding:10px}.logo{font-size:21px}main{padding:0 10px}.cat{padding:10px}.ico{width:52px;height:52px}.cat h2{font-size:18px}}
+</style>
+</head>
+<body>
+<header><div class="bar">
+<button class="menu" onclick="toggleSide()">☰</button><div class="logo">EVEREST<br><i>RUSSIA</i></div>
+<button class="btn" onclick="profile()">Профиль</button><button id="adminBtn" class="btn primary hidden" onclick="admin()">Админка</button>
+</div></header>
+<aside id="side" class="side"><button class="btn" onclick="toggleSide()">Закрыть</button><h2>Навигация</h2><a href="#" onclick="home();return false">🏠 Главная</a><a href="#" onclick="profile();return false">👤 Профиль</a><a id="sideAdmin" class="hidden" href="#" onclick="admin();return false">🛡️ Админ-панель</a><a href="#" onclick="rules();return false">📜 Правила</a></aside>
+<div id="shade" class="shade" onclick="toggleSide()"></div>
+
+<main><section class="hero"><h1>Форум EVEREST RUSSIA</h1><div class="muted">ALPINE • Первый сервер</div></section><div id="categories"></div></main>
+
+<div id="modal" class="modal"><div class="box"><button class="close" onclick="closeModal()">✕</button><div id="content"></div></div></div>
+
+<script>
+/*
+ EVEREST RUSSIA
+ Локальная демо-версия для GitHub Pages.
+ Все правила доступа проверяются в JavaScript интерфейса.
+ Для настоящей защищённой авторизации нужна серверная БД.
+*/
+
+const ROLES={
+"Младший модератор":{c:"",p:["Мут"]},
+"Модератор":{c:"",p:["Мут","Кик"]},
+"Старший модератор":{c:"",p:["Мут","Кик","Блокировка"]},
+"Администратор":{c:"",p:["Мут","Кик","Блокировка","Удаление сообщений"]},
+"Старший администратор":{c:"",p:["Мут","Кик","Блокировка","Удаление сообщений","Удаление тем"]},
+"Следящий за агентами поддержки":{c:"",p:["Модерация АП","Вердикт"]},
+"Главный следящий за крим организациями":{c:"crime",p:["Модерация крим","Вердикт"]},
+"Зам следящего за крим организациями":{c:"crime",p:["Модерация крим","Вердикт"]},
+"Главный следящий за гос организациями":{c:"",p:["Модерация гос","Вердикт"]},
+"Зам следящего за гос организациями":{c:"",p:["Модерация гос","Вердикт"]},
+"Заместитель следящего за АП":{c:"",p:["Модерация АП","Вердикт"]},
+"Куратор администрации":{c:"",p:["Контроль администрации","Вердикт"]},
+"Заместитель куратора администрации":{c:"",p:["Контроль администрации","Вердикт"]},
+"Зам главного администратора":{c:"",p:["Все админские функции","Изменение тем лидеров","Вердикт","Назначение"]},
+"Главный администратор":{c:"",p:["Все админские функции","Изменение тем лидеров","Вердикт","Назначение"]},
+"Создатель форума":{c:"owner",p:["Полный доступ"]},
+"Команда форума":{c:"team",p:["Командные функции"]},
+"Главный технический специалист":{c:"tech",p:["Технические функции"]},
+"Главный разработчик игры":{c:"devmain",p:["Разработка игры","Технические функции"]},
+"Разработчик игры":{c:"dev",p:["Разработка игры"]}
+};
+
+const CATS=[
+["government","🏛️","Государственные организации"],
+["fss","🛡️","ФСБ"],
+["government2","🏢","Правительство"],
+["gibdd","🚓","ГИБДД"],
+["umvd","👮","УМВД"],
+["army","🪖","Армия"],
+["crime","🕶️","Криминальные фракции"],
+["support","🎧","Агенты поддержки"],
+["complaints","⚖️","Жалобы"],
+["general","💬","Общий раздел"]
+];
+
+let db=JSON.parse(localStorage.getItem("everest_russia_v4")||"null")||{
+me:{name:"Создатель",role:"Создатель форума",avatar:"",desc:"Создатель форума EVEREST RUSSIA"},
+users:[{name:"Создатель",role:"Создатель форума",avatar:"",desc:"Создатель форума EVEREST RUSSIA"}],
+topics:{
+government:[],fss:[],government2:[{id:1,title:"Новости Правительства",author:"Создатель",authorRole:"Создатель форума",text:"Добро пожаловать на форум EVEREST RUSSIA.",posts:1}],
+gibdd:[],umvd:[],army:[],crime:[],support:[],complaints:[],general:[]
+},
+logs:[]
+};
+function save(){localStorage.setItem("everest_russia_v4",JSON.stringify(db))}
+function isAdmin(){return !!ROLES[db.me.role]}
+function rank(){return Object.keys(ROLES).indexOf(db.me.role)}
+function zgaOrHigher(){return ["Зам главного администратора","Главный администратор","Создатель форума"].includes(db.me.role)}
+function canEditTopic(t){
+/* ЕДИНОЕ ПРАВИЛО ДЛЯ ВСЕХ РАЗДЕЛОВ:
+   лидер может менять свои темы; ЗГА и выше — темы любых лидеров. */
+if(db.me.role==="Создатель форума")return true;
+if(zgaOrHigher())return true;
+return t.author===db.me.name && t.authorRole==="Лидер";
+}
+function canCreateTopic(cid){
+if(["government","fss","government2","gibdd","umvd","army","crime","support","complaints"].includes(cid))
+ return db.me.role==="Лидер"||zgaOrHigher();
+return isAdmin()||db.me.role==="Лидер";
+}
+function canDeleteTopic(t){return zgaOrHigher()||t.author===db.me.name&&db.me.role==="Лидер"}
+function initials(s){return (s||"?").split(/\s+/).map(x=>x[0]).join("").slice(0,2).toUpperCase()}
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function attr(s){return esc(s)}
+function updateAdmin(){document.getElementById("adminBtn").classList.toggle("hidden",!isAdmin());document.getElementById("sideAdmin").classList.toggle("hidden",!isAdmin())}
+function render(){
+let out="";
+CATS.forEach(c=>{let a=db.topics[c[0]]||[];out+=`<div class="card cat" onclick="category('${c[0]}')"><div class="ico">${c[1]}</div><div class="grow"><h2>${c[2]}</h2><div class="muted">Тем: ${a.length} • Сообщений: ${a.reduce((n,x)=>n+(x.posts||1),0)}</div></div><div class="arrow">›</div></div>`});
+document.getElementById("categories").innerHTML=out;
+}
+function category(id){
+let c=CATS.find(x=>x[0]===id),a=db.topics[id]||[];
+let out=`<h1>${c[1]} ${c[2]}</h1><p class="muted">Все темы раздела</p>`;
+if(canCreateTopic(id))out+=`<button class="btn primary" onclick="newTopic('${id}')">＋ Создать тему</button>`;
+else out+=`<div class="notice">Создавать темы здесь может только лидер раздела и ЗГА или выше.</div>`;
+if(!a.length)out+=`<div class="empty">Тем пока нет.</div>`;
+a.forEach(t=>out+=`<div class="card topic" onclick="topic('${id}',${t.id})"><h3>${esc(t.title)}</h3><div class="muted">Автор: ${esc(t.author)} • ${esc(t.authorRole||"Игрок")} • Сообщений: ${t.posts||1}</div><p>${esc(t.text.slice(0,180))}</p></div>`);
+show(out);
+}
+function newTopic(id){
+if(!canCreateTopic(id))return alert("Недостаточно прав.");
+show(`<h1>Новая тема</h1><div class="field"><label>Название</label><input id="tt"></div><div class="field"><label>Описание / текст</label><textarea id="tx"></textarea></div><button class="btn primary" onclick="createTopic('${id}')">Создать</button>`);
+}
+function createTopic(id){
+let title=document.getElementById("tt").value.trim(),text=document.getElementById("tx").value.trim();
+if(!title||!text)return alert("Заполни название и текст.");
+db.topics[id].unshift({id:Date.now(),title,text,author:db.me.name,authorRole:db.me.role,posts:1});save();closeModal();category(id);render();
+}
+function topic(id,tid){
+let t=(db.topics[id]||[]).find(x=>x.id===tid);if(!t)return;
+let edit=canEditTopic(t),del=canDeleteTopic(t);
+let out=`<h1>${esc(t.title)}</h1><div class="user"><div class="avatar">${db.me.avatar?`<img src="${attr(db.me.avatar)}">`:initials(t.author)}</div><div><b>${esc(t.author)}</b><div class="role ${roleClass(t.authorRole)}">${esc(t.authorRole||"Игрок")}</div></div></div><div class="post"><div class="posttext">${esc(t.text)}</div></div>`;
+out+=`<div class="row">`;
+if(edit)out+=`<button class="btn" onclick="editTopic('${id}',${tid})">✏️ Изменить</button>`;
+if(del)out+=`<button class="btn danger" onclick="deleteTopic('${id}',${tid})">🗑️ Удалить</button>`;
+out+=`</div><div class="notice">Правило: лидер может изменять свои темы. ЗГА, ГА и Создатель могут изменять темы лидеров. Остальные — не могут.</div>`;
+show(out);
+}
+function editTopic(id,tid){
+let t=db.topics[id].find(x=>x.id===tid);if(!t||!canEditTopic(t))return alert("Нет права на изменение этой темы.");
+show(`<h1>Изменить тему</h1><div class="field"><label>Название</label><input id="et" value="${attr(t.title)}"></div><div class="field"><label>Текст</label><textarea id="ex">${esc(t.text)}</textarea></div><button class="btn primary" onclick="saveTopic('${id}',${tid})">Сохранить</button>`);
+}
+function saveTopic(id,tid){
+let t=db.topics[id].find(x=>x.id===tid);if(!t||!canEditTopic(t))return alert("Нет права.");
+t.title=document.getElementById("et").value.trim();t.text=document.getElementById("ex").value.trim();save();topic(id,tid);
+}
+function deleteTopic(id,tid){
+let t=db.topics[id].find(x=>x.id===tid);if(!t||!canDeleteTopic(t))return alert("Нет права.");
+if(!confirm("Удалить тему?"))return;db.topics[id]=db.topics[id].filter(x=>x.id!==tid);save();category(id);render();
+}
+function roleClass(r){return r==="Создатель форума"?"owner":r==="Команда форума"?"team":r==="Главный технический специалист"?"tech":r==="Главный разработчик игры"?"devmain":r==="Разработчик игры"?"dev":r&&r.includes("крим")?"crime":r==="Лидер"?"leader":""}
+function profile(){
+let u=db.me;
+show(`<h1>Профиль</h1><div class="card user"><div class="avatar">${u.avatar?`<img src="${attr(u.avatar)}">`:initials(u.name)}</div><div><b>${esc(u.name)}</b><div class="role ${roleClass(u.role)}">${esc(u.role)}</div></div></div><div class="field"><label>Аватар — ссылка</label><input id="pa" value="${attr(u.avatar)}"></div><div class="field"><label>Описание</label><textarea id="pd">${esc(u.desc)}</textarea></div><button class="btn primary" onclick="saveProfile()">Сохранить</button>`);
+}
+function saveProfile(){db.me.avatar=document.getElementById("pa").value.trim();db.me.desc=document.getElementById("pd").value.trim();let u=db.users.find(x=>x.name===db.me.name);if(u)Object.assign(u,db.me);save();closeModal()}
+function admin(){
+if(!isAdmin())return;
+show(`<h1>🛡️ Админ-панель</h1><p class="muted">Должность: <b class="${roleClass(db.me.role)}">${esc(db.me.role)}</b></p><div class="row"><button class="btn primary" onclick="adminsTab()">Администраторы</button><button class="btn" onclick="moderationTab()">Модерация</button><button class="btn" onclick="verdictTab()">Вердикты</button></div><div id="adminBody"></div>`);adminsTab();
+}
+function adminsTab(){
+let out=`<div class="card"><b>Права:</b> ${(ROLES[db.me.role]?.p||[]).join(", ")}</div>`;
+if(["Создатель форума","Главный администратор","Зам главного администратора"].includes(db.me.role))out+=`<button class="btn primary" onclick="assign()">＋ Назначить администратора</button>`;
+out+="<h2>Администраторы</h2>";
+db.users.filter(u=>ROLES[u.role]).forEach(u=>{out+=`<div class="card user"><div class="avatar">${u.avatar?`<img src="${attr(u.avatar)}">`:initials(u.name)}</div><div class="grow"><b>${esc(u.name)}</b><div class="role ${roleClass(u.role)}">${esc(u.role)}</div><div class="muted">${esc(u.desc||"")}</div></div>`;
+if(["Создатель форума","Главный администратор","Зам главного администратора"].includes(db.me.role)&&u.name!==db.me.name&&u.role!=="Создатель форума")out+=`<button class="btn danger" onclick="removeAdmin('${attr(u.name)}')">Снять</button>`;
+out+="</div>"});
+document.getElementById("adminBody").innerHTML=out;
+}
+function assign(){
+let opts=Object.keys(ROLES).filter(r=>r!=="Создатель форума").map(r=>`<option>${esc(r)}</option>`).join("");
+show(`<h1>Назначение администратора</h1><div class="field"><label>Игрок</label><input id="an"></div><div class="field"><label>Должность</label><select id="ar">${opts}</select></div><div class="field"><label>Аватар</label><input id="aa"></div><div class="field"><label>Описание</label><textarea id="ad"></textarea></div><button class="btn primary" onclick="saveAdmin()">Назначить</button>`);
+}
+function saveAdmin(){
+let n=document.getElementById("an").value.trim(),r=document.getElementById("ar").value;if(!n)return alert("Укажи игрока.");
+let u=db.users.find(x=>x.name===n);if(!u){u={name:n,role:r,avatar:document.getElementById("aa").value.trim(),desc:document.getElementById("ad").value.trim()};db.users.push(u)}else{u.role=r;u.avatar=document.getElementById("aa").value.trim();u.desc=document.getElementById("ad").value.trim()}
+save();admin();
+}
+function removeAdmin(n){if(!confirm("Снять "+n+" с админки?"))return;let u=db.users.find(x=>x.name===n);if(u)u.role="Игрок";save();admin()}
+function moderationTab(){
+let out=`<h2>Модерация</h2><div class="field"><label>Игрок</label><input id="mt"></div><div class="field"><label>Причина</label><input id="mr"></div><div class="row"><button class="btn" onclick="mod('Мут')">🔇 Мут</button><button class="btn" onclick="mod('Кик')">👢 Кик</button><button class="btn danger" onclick="mod('Блокировка')">⛔ Блокировка</button><button class="btn danger" onclick="mod('ЧС форума')">🚫 ЧС форума</button></div><h3>История</h3>`;
+db.logs.slice().reverse().forEach(x=>out+=`<div class="card"><b>${esc(x.type)}</b> — ${esc(x.target)}<br><span class="muted">${esc(x.reason)} • ${esc(x.by)} • ${esc(x.time)}</span></div>`);
+document.getElementById("adminBody").innerHTML=out;
+}
+function mod(type){
+let t=document.getElementById("mt").value.trim(),r=document.getElementById("mr").value.trim();if(!t||!r)return alert("Заполни поля.");
+let need=type==="Мут"?"Мут":type==="Кик"?"Кик":"Блокировка";if(!(ROLES[db.me.role].p.includes(need)||zgaOrHigher()))return alert("У твоей должности нет этого права.");
+db.logs.push({type,target:t,reason:r,by:db.me.name,time:new Date().toLocaleString()});save();moderationTab();
+}
+function verdictTab(){
+if(!isAdmin())return;let out=`<h2>Вердикты</h2><div class="field"><label>Игрок / дело</label><input id="vt"></div><div class="field"><label>Вердикт</label><textarea id="vx"></textarea></div><button class="btn primary" onclick="verdict()">Вынести вердикт</button>`;
+db.logs.filter(x=>x.type==="Вердикт").slice().reverse().forEach(x=>out+=`<div class="card"><b>${esc(x.target)}</b><p>${esc(x.reason)}</p><span class="muted">${esc(x.by)} • ${esc(x.time)}</span></div>`);
+document.getElementById("adminBody").innerHTML=out;
+}
+function verdict(){let t=document.getElementById("vt").value.trim(),r=document.getElementById("vx").value.trim();if(!t||!r)return alert("Заполни поля.");db.logs.push({type:"Вердикт",target:t,reason:r,by:db.me.name,time:new Date().toLocaleString()});save();verdictTab()}
+function rules(){show(`<h1>📜 Правила</h1><div class="card">Во всех разделах действует единое правило изменения тем: лидер изменяет свои темы, ЗГА и выше могут изменять темы лидеров. Остальные должности не могут изменять темы лидеров.</div><div class="card">Админ-панель доступна только назначенным администраторам.</div>`)}
+function show(x){document.getElementById("content").innerHTML=x;document.getElementById("modal").classList.add("on")}
+function closeModal(){document.getElementById("modal").classList.remove("on")}
+function toggleSide(){document.getElementById("side").classList.toggle("open");document.getElementById("shade").classList.toggle("on")}
+function home(){closeModal();render();if(document.getElementById("side").classList.contains("open"))toggleSide()}
+document.getElementById("modal").addEventListener("click",e=>{if(e.target.id==="modal")closeModal()});
+updateAdmin();render();
+</script>
+</body>
+</html>
