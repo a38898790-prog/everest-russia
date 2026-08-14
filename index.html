@@ -1,1 +1,550 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EVEREST RUSSIA — Форум</title>
 
+<style>
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#090d12;
+color:#e8edf3
+}
+header{
+background:#111821;
+border-bottom:1px solid #26313d;
+position:sticky;
+top:0;
+z-index:10
+}
+.wrap{max-width:1100px;margin:auto;padding:0 16px}
+.top{
+height:64px;
+display:flex;
+align-items:center;
+justify-content:space-between
+}
+.logo{
+font-size:22px;
+font-weight:800;
+color:#fff
+}
+.logo span{color:#36a3ff}
+nav a{
+color:#aeb8c4;
+text-decoration:none;
+margin-left:18px;
+cursor:pointer
+}
+nav a:hover{color:#fff}
+
+main{padding:25px 0}
+.hero{
+background:linear-gradient(135deg,#151e29,#0d131b);
+border:1px solid #26313d;
+border-radius:12px;
+padding:28px;
+margin-bottom:20px
+}
+.hero h1{margin:0 0 8px;font-size:30px}
+.hero p{color:#9da9b6}
+
+.buttons{display:flex;gap:10px;flex-wrap:wrap}
+button{
+border:0;
+border-radius:7px;
+padding:11px 16px;
+background:#202b37;
+color:#fff;
+cursor:pointer;
+font-weight:600
+}
+button:hover{background:#2b3948}
+.primary{background:#168cff}
+.primary:hover{background:#0878df}
+
+.grid{
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:18px
+}
+.card{
+background:#111821;
+border:1px solid #26313d;
+border-radius:10px;
+overflow:hidden;
+margin-bottom:14px
+}
+.card h2{
+font-size:18px;
+margin:0;
+padding:15px;
+border-bottom:1px solid #26313d
+}
+.topic{
+padding:15px;
+border-bottom:1px solid #202a34;
+cursor:pointer
+}
+.topic:last-child{border:0}
+.topic:hover{background:#151e28}
+.topic b{display:block;margin-bottom:5px}
+.topic small{color:#8794a2}
+
+.side{padding:16px}
+.user{
+display:flex;
+gap:12px;
+align-items:center;
+padding-bottom:15px;
+border-bottom:1px solid #26313d
+}
+.avatar{
+width:45px;
+height:45px;
+border-radius:50%;
+background:#168cff;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold
+}
+.muted{color:#8996a4}
+
+.modal{
+display:none;
+position:fixed;
+inset:0;
+background:#000b;
+align-items:center;
+justify-content:center;
+z-index:20;
+padding:15px
+}
+.modal.show{display:flex}
+.box{
+width:min(500px,100%);
+background:#111821;
+border:1px solid #344251;
+border-radius:12px;
+padding:22px
+}
+.box h2{margin-top:0}
+input,textarea,select{
+width:100%;
+padding:12px;
+margin:7px 0 12px;
+border-radius:7px;
+border:1px solid #344251;
+background:#0b1118;
+color:#fff
+}
+textarea{min-height:130px;resize:vertical}
+.close{
+float:right;
+cursor:pointer;
+font-size:22px
+}
+.message{
+padding:15px;
+border-bottom:1px solid #26313d
+}
+footer{
+text-align:center;
+color:#667381;
+padding:30px
+}
+
+@media(max-width:750px){
+.grid{grid-template-columns:1fr}
+nav{display:none}
+.hero h1{font-size:24px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="wrap top">
+<div class="logo">EVEREST <span>RUSSIA</span></div>
+<nav>
+<a onclick="home()">Главная</a>
+<a onclick="showProfile()">Профиль</a>
+<a onclick="openLogin()">Войти</a>
+</nav>
+</div>
+</header>
+
+<main class="wrap">
+
+<section class="hero">
+<h1>Форум EVEREST RUSSIA</h1>
+<p>
+Официальное игровое сообщество проекта.  
+Общение игроков, новости, обсуждения и помощь.
+</p>
+
+<div class="buttons">
+<button class="primary" onclick="openTopic()">Создать тему</button>
+<button onclick="openRegister()">Регистрация</button>
+<button onclick="openLogin()">Войти</button>
+</div>
+</section>
+
+<div class="grid">
+
+<div>
+
+<div class="card">
+<h2>📢 Основные разделы</h2>
+
+<div class="topic" onclick="openSection('Новости проекта')">
+<b>📰 Новости проекта</b>
+<small>Обновления, события и важные объявления</small>
+</div>
+
+<div class="topic" onclick="openSection('Общий раздел')">
+<b>💬 Общий раздел</b>
+<small>Общение игроков и обсуждение проекта</small>
+</div>
+
+<div class="topic" onclick="openSection('Помощь')">
+<b>❓ Помощь</b>
+<small>Вопросы, ответы и решение проблем</small>
+</div>
+
+<div class="topic" onclick="openSection('Жалобы')">
+<b>⚠️ Жалобы</b>
+<small>Жалобы на игроков и игровые ситуации</small>
+</div>
+
+</div>
+
+<div class="card">
+<h2>🔥 Последние темы</h2>
+<div id="topics"></div>
+</div>
+
+</div>
+
+<aside>
+
+<div class="card">
+<h2>👤 Аккаунт</h2>
+<div class="side" id="account">
+Вы не авторизованы.
+<br><br>
+<button class="primary" onclick="openLogin()">Войти</button>
+</div>
+</div>
+
+<div class="card">
+<h2>📊 Форум</h2>
+<div class="side">
+<div>Тем: <b id="topicCount">0</b></div>
+<br>
+<div>Пользователей: <b id="userCount">0</b></div>
+</div>
+</div>
+
+</aside>
+
+</div>
+</main>
+
+<footer>
+EVEREST RUSSIA © 2026
+</footer>
+
+
+<!-- АВТОРИЗАЦИЯ -->
+
+<div class="modal" id="loginModal">
+<div class="box">
+<span class="close" onclick="closeModal()">×</span>
+<h2>Вход</h2>
+
+<input id="loginName" placeholder="Имя пользователя">
+<input id="loginPass" type="password" placeholder="Пароль">
+
+<button class="primary" onclick="login()">Войти</button>
+<button onclick="openRegister()">Регистрация</button>
+
+<p id="loginMsg" class="muted"></p>
+</div>
+</div>
+
+
+<!-- РЕГИСТРАЦИЯ -->
+
+<div class="modal" id="registerModal">
+<div class="box">
+<span class="close" onclick="closeModal()">×</span>
+<h2>Регистрация</h2>
+
+<input id="regName" placeholder="Имя пользователя">
+<input id="regPass" type="password" placeholder="Пароль">
+
+<button class="primary" onclick="register()">Создать аккаунт</button>
+
+<p id="regMsg" class="muted"></p>
+</div>
+</div>
+
+
+<!-- СОЗДАНИЕ ТЕМЫ -->
+
+<div class="modal" id="topicModal">
+<div class="box">
+<span class="close" onclick="closeModal()">×</span>
+<h2>Создать тему</h2>
+
+<input id="topicTitle" placeholder="Название темы">
+
+<select id="topicSection">
+<option>Общий раздел</option>
+<option>Новости проекта</option>
+<option>Помощь</option>
+<option>Жалобы</option>
+</select>
+
+<textarea id="topicText" placeholder="Текст сообщения"></textarea>
+
+<button class="primary" onclick="createTopic()">Опубликовать</button>
+
+<p id="topicMsg" class="muted"></p>
+</div>
+</div>
+
+
+<script>
+
+let users=JSON.parse(localStorage.getItem("everest_users")||"[]");
+let topics=JSON.parse(localStorage.getItem("everest_topics")||"[]");
+let current=JSON.parse(localStorage.getItem("everest_current")||"null");
+
+function save(){
+localStorage.setItem("everest_users",JSON.stringify(users));
+localStorage.setItem("everest_topics",JSON.stringify(topics));
+localStorage.setItem("everest_current",JSON.stringify(current));
+}
+
+function openLogin(){
+closeModal();
+document.getElementById("loginModal").classList.add("show");
+}
+
+function openRegister(){
+closeModal();
+document.getElementById("registerModal").classList.add("show");
+}
+
+function openTopic(){
+if(!current){
+openLogin();
+return;
+}
+closeModal();
+document.getElementById("topicModal").classList.add("show");
+}
+
+function closeModal(){
+document.querySelectorAll(".modal").forEach(x=>x.classList.remove("show"));
+}
+
+function register(){
+
+let name=document.getElementById("regName").value.trim();
+let pass=document.getElementById("regPass").value;
+
+if(name.length<3||pass.length<3){
+document.getElementById("regMsg").textContent="Введите имя и пароль минимум по 3 символа.";
+return;
+}
+
+if(users.some(u=>u.name.toLowerCase()===name.toLowerCase())){
+document.getElementById("regMsg").textContent="Такой пользователь уже существует.";
+return;
+}
+
+let user={name:name,pass:pass};
+users.push(user);
+current={name:name};
+
+save();
+closeModal();
+render();
+
+alert("Аккаунт создан!");
+}
+
+function login(){
+
+let name=document.getElementById("loginName").value.trim();
+let pass=document.getElementById("loginPass").value;
+
+let user=users.find(u=>u.name===name&&u.pass===pass);
+
+if(!user){
+document.getElementById("loginMsg").textContent="Неверное имя или пароль.";
+return;
+}
+
+current={name:user.name};
+save();
+closeModal();
+render();
+}
+
+function logout(){
+current=null;
+save();
+render();
+}
+
+function createTopic(){
+
+let title=document.getElementById("topicTitle").value.trim();
+let text=document.getElementById("topicText").value.trim();
+let section=document.getElementById("topicSection").value;
+
+if(!title||!text){
+document.getElementById("topicMsg").textContent="Заполни название и текст.";
+return;
+}
+
+topics.unshift({
+title:title,
+text:text,
+section:section,
+author:current.name,
+date:new Date().toLocaleString("ru-RU")
+});
+
+save();
+closeModal();
+render();
+}
+
+function openSection(section){
+
+let found=topics.filter(x=>x.section===section);
+
+if(found.length===0){
+alert(section+"\n\nПока тем нет.");
+return;
+}
+
+let text=section+"\n\n";
+
+found.forEach(x=>{
+text+="• "+x.title+" — "+x.author+"\n";
+});
+
+alert(text);
+}
+
+function showProfile(){
+
+if(!current){
+openLogin();
+return;
+}
+
+alert("Профиль\n\nИгрок: "+current.name+"\nТем создано: "+
+topics.filter(x=>x.author===current.name).length);
+}
+
+function home(){
+window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function render(){
+
+let list=document.getElementById("topics");
+
+if(topics.length===0){
+
+list.innerHTML=
+'<div class="side muted">Пока нет тем. Создай первую тему!</div>';
+
+}else{
+
+list.innerHTML=topics.map((x,i)=>`
+
+<div class="topic" onclick="viewTopic(${i})">
+<b>${escapeHtml(x.title)}</b>
+<small>${escapeHtml(x.section)} · ${escapeHtml(x.author)} · ${x.date}</small>
+</div>
+
+`).join("");
+
+}
+
+document.getElementById("topicCount").textContent=topics.length;
+document.getElementById("userCount").textContent=users.length;
+
+let account=document.getElementById("account");
+
+if(current){
+
+account.innerHTML=`
+<div class="user">
+<div class="avatar">${current.name[0].toUpperCase()}</div>
+<div>
+<b>${escapeHtml(current.name)}</b><br>
+<span class="muted">Игрок</span>
+</div>
+</div>
+<br>
+<button onclick="showProfile()">Профиль</button>
+<button onclick="logout()">Выйти</button>
+`;
+
+}else{
+
+account.innerHTML=`
+Вы не авторизованы.
+<br><br>
+<button class="primary" onclick="openLogin()">Войти</button>
+`;
+}
+
+}
+
+function viewTopic(i){
+
+let x=topics[i];
+
+alert(
+x.title+
+"\n\nРаздел: "+x.section+
+"\nАвтор: "+x.author+
+"\n\n"+x.text
+);
+
+}
+
+
+
+function escapeHtml(text){
+
+return text
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
+
+}
+
+render();
+
+</script>
+
+</body>
+</html>
